@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Locale Pays Basque - AAP FSE+ 2025-2027</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Flowchart Mobilité & Life Skills - MLPB</title>
     <style>
         * {
             margin: 0;
@@ -13,1058 +12,550 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            overflow-x: auto;
         }
 
-        .presentation-container {
-            max-width: 1200px;
+        .container {
+            max-width: 1600px;
             margin: 0 auto;
-            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(23, 23, 24, 0.1);
         }
 
-        /* Header */
-        .main-header {
+        h1 {
             text-align: center;
-            padding: 40px 20px;
-            background: white;
-            margin-bottom: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(23, 23, 24, 0.1);
-        }
-
-        .logo-mlpb {
-            width: 80px;
-            height: 80px;
-            background: #f39200;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 24px;
-            margin: 0 auto 20px;
-        }
-
-        .main-title {
-            font-size: 2.5rem;
-            font-weight: 700;
             color: #171718;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .main-subtitle {
-            font-size: 1.2rem;
-            color: #9f3d3f;
-            font-weight: 400;
-        }
-
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .cards-grid.bottom-row {
-            grid-template-columns: repeat(2, 1fr);
-            max-width: 800px;
-            margin: 40px auto 0;
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(23, 23, 24, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(23, 23, 24, 0.15);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
+            font-size: 2.8em;
             margin-bottom: 20px;
-        }
-
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 24px;
-            color: white;
             font-weight: bold;
         }
 
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #171718;
-            line-height: 1.3;
+        .subtitle {
+            text-align: center;
+            color: #2897d5;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            font-weight: 300;
         }
 
-        .card-content {
-            color: #171718;
-            line-height: 1.6;
-        }
-
-        /* Couleurs spécifiques par carte */
-        .mobilite-territoriale .card-icon { background: #95c11f; }
-        .mobilite-territoriale:hover { border-color: #95c11f; }
-
-        .mobilite-internationale .card-icon { background: #2897d5; }
-        .mobilite-internationale:hover { border-color: #2897d5; }
-
-        .mobilite-transfrontaliere .card-icon { background: #d60b52; }
-        .mobilite-transfrontaliere:hover { border-color: #d60b52; }
-
-        .strategie-financiere .card-icon { background: #f39200; }
-        .strategie-financiere:hover { border-color: #f39200; }
-
-        .impact .card-icon { background: #a3195b; }
-        .impact:hover { border-color: #a3195b; }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        .flowchart {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
-            margin: 30px 0;
         }
 
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
+        .phase-container {
             border-radius: 15px;
-            border: 2px solid #e9ecef;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #f39200;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #171718;
-            font-weight: 500;
-        }
-
-        .highlight {
-            background: linear-gradient(120deg, #fff3cd 0%, #ffeaa7 100%);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #f39200;
-            margin: 20px 0;
-        }
-
-        .content-section {
-            margin-bottom: 20px;
-        }
-
-        .content-section h4 {
-            color: #171718;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .content-section p, .content-section ul {
-            color: #171718;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .content-section ul {
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-
-        /* Styles pour le graphique donut mini */
-        .donut-chart-mini .chart-segment {
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(23, 23, 24, 0.1);
             transition: all 0.3s ease;
+        }
+
+        .phase-header {
+            padding: 25px 30px;
+            font-weight: bold;
+            font-size: 1.5em;
+            color: white;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            user-select: none;
         }
 
-        .donut-chart-mini .chart-segment:hover {
+        .phase-header:hover {
             filter: brightness(1.1);
-            transform: scale(1.05);
-            transform-origin: 100px 100px;
+            transform: translateX(5px);
         }
 
-        /* Responsive */
+        .phase-header.preparer {
+            background: linear-gradient(135deg, #f39200, #ff9e1a);
+        }
+
+        .phase-header.partir {
+            background: linear-gradient(135deg, #95c11f, #a8d437);
+        }
+
+        .phase-header.vivre {
+            background: linear-gradient(135deg, #d60b52, #e52565);
+        }
+
+        .phase-header.valoriser {
+            background: linear-gradient(135deg, #a3195b, #b82f6f);
+        }
+
+        .phase-icon {
+            font-size: 1.3em;
+            margin-right: 15px;
+        }
+
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .phase-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #fafafa;
+        }
+
+        .phase-content.open {
+            max-height: 3000px;
+        }
+
+        .branches {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .branch {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(23, 23, 24, 0.08);
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+            animation: slideIn 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .branch:nth-child(1) { animation-delay: 0.1s; }
+        .branch:nth-child(2) { animation-delay: 0.2s; }
+        .branch:nth-child(3) { animation-delay: 0.3s; }
+        .branch:nth-child(4) { animation-delay: 0.4s; }
+
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(23, 23, 24, 0.15);
+        }
+
+        .branch.blue { border-left-color: #2897d5; }
+        .branch.orange { border-left-color: #f39200; }
+        .branch.green { border-left-color: #95c11f; }
+        .branch.pink { border-left-color: #d60b52; }
+        .branch.violet { border-left-color: #a3195b; }
+        .branch.red { border-left-color: #9f3d3f; }
+
+        .branch-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .branch-icon {
+            font-size: 1.8em;
+            line-height: 1;
+        }
+
+        .branch-title {
+            font-size: 1.05em;
+            font-weight: bold;
+            color: #171718;
+            flex: 1;
+        }
+
+        .branch-objective {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .branch-skills {
+            list-style: none;
+            font-size: 0.8em;
+            color: #171718;
+        }
+
+        .branch-skills li {
+            padding: 4px 0 4px 15px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .branch-skills li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .branch.blue .branch-skills li::before { color: #2897d5; }
+        .branch.orange .branch-skills li::before { color: #f39200; }
+        .branch.green .branch-skills li::before { color: #95c11f; }
+        .branch.pink .branch-skills li::before { color: #d60b52; }
+        .branch.violet .branch-skills li::before { color: #a3195b; }
+        .branch.red .branch-skills li::before { color: #9f3d3f; }
+
+        .synthesis {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #171718, #3a3a3c);
+            border-radius: 15px;
+            padding: 40px;
+            color: white;
+        }
+
+        .synthesis h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .synthesis-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .synthesis-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .synthesis-card.card-orange { border-color: #f39200; }
+        .synthesis-card.card-green { border-color: #95c11f; }
+        .synthesis-card.card-pink { border-color: #d60b52; }
+        .synthesis-card.card-violet { border-color: #a3195b; }
+
+        .synthesis-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .synthesis-card p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 2rem;
+            .container {
+                padding: 30px 20px;
             }
-            
-            .cards-grid {
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .phase-header {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+
+            .branches {
                 grid-template-columns: 1fr;
+                padding: 20px;
             }
-            
-            .cards-grid.bottom-row {
+
+            .synthesis-grid {
                 grid-template-columns: 1fr;
-                max-width: 100%;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <div class="presentation-container">
-        <div class="main-header">
-            <div class="logo-mlpb">MLPB</div>
-            <h1 class="main-title">Mission Locale Pays Basque</h1>
-            <p class="main-subtitle">FSE+ 2025–2027 : Miser sur la mobilité pour l'insertion des jeunes</p>
-        </div>
-
-        <div class="cards-grid">
-            <!-- Carte 1: Mobilité Territoriale -->
-            <div class="card mobilite-territoriale">
-                <div class="card-header">
-                    <div class="card-icon">🚲</div>
-                    <div class="card-title">Mobilité Territoriale<br><small style="font-weight: 400; color: #6c757d;">Lever les freins de transport local</small></div>
+    <div class="container">
+        <h1>🗺️ Parcours de Mobilité Internationale</h1>
+        <p class="subtitle">Life Skills & Compétences Transversales</p>
+        
+        <div class="flowchart">
+            <!-- PHASE 1: PRÉPARER -->
+            <div class="phase-container">
+                <div class="phase-header preparer" onclick="togglePhase(this)">
+                    <div>
+                        <span class="phase-icon">🎯</span>
+                        <span>PRÉPARER</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
                 </div>
-                <div class="card-content">
-                    <p style="margin-bottom: 20px; font-weight: 500; color: #95c11f; font-size: 1.1rem; line-height: 1.4;">
-                        <strong>La mobilité territoriale constitue le premier frein à l'insertion des jeunes ruraux.</strong> 
-                        Notre approche mutualise les ressources pour maximiser l'impact tout en optimisant les coûts.
-                    </p>
-
-                    <div style="text-align: center; margin-top: 30px;">
-                        <a href="https://mlpb-tools.github.io/mobilit-territoire/" target="_blank" rel="noopener noreferrer" 
-                           style="display: inline-block; background: linear-gradient(135deg, #95c11f 0%, #7ba01a 100%); 
-                                  color: white; padding: 15px 30px; border-radius: 25px; text-decoration: none; 
-                                  font-weight: 600; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(149, 193, 31, 0.3); 
-                                  transition: all 0.3s ease;">
-                            📋 Voir le plan détaillé →
-                        </a>
-                    </div>
-
-                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #95c11f;">
-                        <p style="font-size: 0.9rem; color: #6c757d; margin: 0; text-align: center;">
-                            <strong>Stratégie d'économies :</strong> Mutualisation des expertises • Partenariats gratuits • Outils numériques réutilisables
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte 2: Mobilité Internationale -->
-            <div class="card mobilite-internationale">
-                <div class="card-header">
-                    <div class="card-icon">🌍</div>
-                    <div class="card-title">Mobilité Internationale<br><small style="font-weight: 400; color: #6c757d;">Take Off Pro - Axe consolidé</small></div>
-                </div>
-                <div class="card-content">
-                    <p style="margin-bottom: 20px; font-weight: 500; color: #2897d5; font-size: 1.1rem; line-height: 1.4;">
-                        <strong>Un axe stratégique consolidé depuis plus de 5 ans.</strong> 
-                        La mobilité internationale constitue un levier central de l'insertion pour les jeunes du Pays Basque.
-                    </p>
-
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Années d'expérience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">0,25</span>
-                            <span class="stat-label">ETP animateur</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Parcours sécurisés</span>
-                        </div>
-                    </div>
-
-                    <!-- Sous-blocs cliquables -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                        <div class="sub-card" onclick="toggleSubContent('ateliers-collectifs')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #2897d5;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🎯 Ateliers Collectifs</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Sensibilisation & préparation</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('preparation-depart')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #2897d5;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🧳 Préparation Départ</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Accompagnement individuel</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('suivi-mobilite')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #2897d5;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">📞 Suivi Mobilité</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Contact permanent</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('valorisation-retour')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #2897d5;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🏆 Valorisation Retour</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Insertion renforcée</p>
-                        </div>
-                    </div>
-
-                    <!-- Contenu détaillé des sous-blocs (masqué par défaut) -->
-                    <div id="ateliers-collectifs" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #e8f4fd; border-radius: 10px; border-left: 4px solid #2897d5;">
-                        <h4 style="color: #2897d5; margin-bottom: 15px;">🎯 Ateliers Collectifs - Animation consolidée</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Sensibilisation</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Découverte opportunités européennes</li>
-                                    <li>Témoignages jeunes revenus</li>
-                                    <li>Présentation Take Off Pro</li>
-                                    <li>Démystification mobilité</li>
-                                </ul>
+                <div class="phase-content">
+                    <div class="branches">
+                        <div class="branch blue">
+                            <div class="branch-header">
+                                <span class="branch-icon">🎯</span>
+                                <h3 class="branch-title">Explorer sa mobilité</h3>
                             </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Préparation culturelle</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Connaissance pays d'accueil</li>
-                                    <li>Codes professionnels européens</li>
-                                    <li>Ateliers linguistiques pratiques</li>
-                                    <li>Vocabulaire professionnel</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="preparation-depart" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #e8f4fd; border-radius: 10px; border-left: 4px solid #2897d5;">
-                        <h4 style="color: #2897d5; margin-bottom: 15px;">🧳 Préparation Départ - Accompagnement renforcé</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Accompagnement individuel</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Conseiller mobilité MLPB</li>
-                                    <li>Animateur Take Off Pro</li>
-                                    <li>Suivi personnalisé</li>
-                                    <li>Coaching motivation</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Logistique sécurisée</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Dossiers Erasmus+ complets</li>
-                                    <li>Assurance & droits sociaux</li>
-                                    <li>Logement & transport</li>
-                                    <li>Budget & gestion financière</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="suivi-mobilite" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #e8f4fd; border-radius: 10px; border-left: 4px solid #2897d5;">
-                        <h4 style="color: #2897d5; margin-bottom: 15px;">📞 Suivi Mobilité - Qualité garantie</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Contact permanent</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Conseiller référent MLPB</li>
-                                    <li>Points réguliers programmés</li>
-                                    <li>Disponibilité urgences</li>
-                                    <li>Soutien psychologique</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Réseau sécurisé</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Organisme d'accueil partenaire</li>
-                                    <li>Pistes Solidaires coordinateur</li>
-                                    <li>Réseau européen Take Off Pro</li>
-                                    <li>Intervention rapide si difficulté</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="valorisation-retour" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #e8f4fd; border-radius: 10px; border-left: 4px solid #2897d5;">
-                        <h4 style="color: #2897d5; margin-bottom: 15px;">🏆 Valorisation Retour - Insertion optimisée</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Formalisation compétences</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Débriefing individuel & collectif</li>
-                                    <li>Europass & Youthpass</li>
-                                    <li>Open Badges numériques</li>
-                                    <li>Portfolio de compétences</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Capitalisation parcours</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Lien conseiller référent MLPB</li>
-                                    <li>Intégration CEJ/PACEA</li>
-                                    <li>Emploi, alternance, formation</li>
-                                    <li>Effet levier employabilité</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #2897d5;">
-                        <p style="font-size: 0.9rem; color: #6c757d; margin: 0; text-align: center;">
-                            <strong>Partenariat expert :</strong> Pistes Solidaires coordinateur • Réseau européen consolidé • 5+ ans d'expérience terrain
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte 3: Mobilité Transfrontalière -->
-            <div class="card mobilite-transfrontaliere">
-                <div class="card-header">
-                    <div class="card-icon">🤝</div>
-                    <div class="card-title">Mobilité Transfrontalière<br><small style="font-weight: 400; color: #6c757d;">Take Off TF - Évolution stratégique</small></div>
-                </div>
-                <div class="card-content">
-                    <p style="margin-bottom: 20px; font-weight: 500; color: #d60b52; font-size: 1.1rem; line-height: 1.4;">
-                        <strong>Une évolution stratégique de Take Off Pro.</strong> 
-                        Dans un contexte de chômage élevé et de proximité avec le marché espagnol, la MLPB oriente ce dispositif vers des mobilités transfrontalières individualisées.
-                    </p>
-
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-number">10-15</span>
-                            <span class="stat-label">Mobilités/an</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">0,25</span>
-                            <span class="stat-label">ETP animateur</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Parcours sécurisés</span>
-                        </div>
-                    </div>
-
-                    <!-- Sous-blocs cliquables -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                        <div class="sub-card" onclick="toggleSubContent('adaptation-besoins')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #d60b52;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🎯 Adaptation Besoins</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Parcours courts & réalistes</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('dimension-transfrontaliere')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #d60b52;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🌉 Dimension Transfrontalière</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Tremplin vers l'emploi</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('mise-en-oeuvre-tf')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #d60b52;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🛠️ Mise en Œuvre</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Accompagnement renforcé</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('articulation-lanean')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #d60b52;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🔗 Articulation Lanean</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Continuum insertion</p>
-                        </div>
-                    </div>
-
-                    <!-- Contenu détaillé des sous-blocs (masqué par défaut) -->
-                    <div id="adaptation-besoins" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #d60b52;">
-                        <h4 style="color: #d60b52; margin-bottom: 15px;">🎯 Adaptation aux besoins spécifiques des jeunes</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Parcours adaptés</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Mobilités courtes et sécurisées</li>
-                                    <li>10-15 parcours individualisés/an</li>
-                                    <li>Réponse aux contraintes locales</li>
-                                    <li>Approche progressive et réaliste</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Freins identifiés</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Peur de l'inconnu</li>
-                                    <li>Barrière linguistique</li>
-                                    <li>Contraintes familiales</li>
-                                    <li>Contraintes financières</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="dimension-transfrontaliere" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #d60b52;">
-                        <h4 style="color: #d60b52; margin-bottom: 15px;">🌉 Valoriser la dimension transfrontalière</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Expériences formatrices</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Entreprises en Euskadi/Navarre</li>
-                                    <li>Associations transfrontalières</li>
-                                    <li>Organismes publics espagnols</li>
-                                    <li>Mise en situation réelle</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Accompagnement renforcé</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Préparation interculturelle</li>
-                                    <li>Suivi pendant mobilité</li>
-                                    <li>Bilan de retour structuré</li>
-                                    <li>Tremplin vers l'emploi</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="mise-en-oeuvre-tf" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #d60b52;">
-                        <h4 style="color: #d60b52; margin-bottom: 15px;">🛠️ Mise en œuvre opérationnelle</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Ressources mobilisées</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>0,25 ETP animateur mobilité</li>
-                                    <li>10-15 jeunes accompagnés/an</li>
-                                    <li>Suivi individuel renforcé</li>
-                                    <li>Lien conseiller référent</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Étapes du parcours</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Ateliers collectifs préparation</li>
-                                    <li>Recherche expérience adaptée</li>
-                                    <li>Contact hebdomadaire mobilité</li>
-                                    <li>Bilan compétences retour</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="articulation-lanean" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #d60b52;">
-                        <h4 style="color: #d60b52; margin-bottom: 15px;">🔗 Continuum avec Lanean</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Take Off TF : Préparation</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Porte d'entrée sécurisée</li>
-                                    <li>Expérience courte adaptée</li>
-                                    <li>Préparation au marché espagnol</li>
-                                    <li>Montée en compétences</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Lanean : Insertion</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Forums emploi transfrontaliers</li>
-                                    <li>Rallyes entreprises</li>
-                                    <li>Job matching direct</li>
-                                    <li>Accompagnement juridique</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style="margin-top: 15px; padding: 15px; background: #fff; border-radius: 8px; border: 2px solid #d60b52;">
-                            <p style="text-align: center; font-weight: 600; color: #d60b52; margin: 0;">
-                                Logique de parcours progressif : Expérience → Valorisation → Insertion
-                            </p>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #d60b52;">
-                        <p style="font-size: 0.9rem; color: #6c757d; margin: 0; text-align: center;">
-                            <strong>Évolution stratégique :</strong> Take Off Pro → Take Off TF • Proximité géographique • Marché du travail accessible
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="cards-grid bottom-row">
-            <!-- Carte 4: Stratégie Financière -->
-            <div class="card strategie-financiere">
-                <div class="card-header">
-                    <div class="card-icon">💰</div>
-                    <div class="card-title">Stratégie Financière<br><small style="font-weight: 400; color: #6c757d;">Priorité au renforcement RH</small></div>
-                </div>
-                <div class="card-content">
-                    <p style="margin-bottom: 20px; font-weight: 500; color: #f39200; font-size: 1.1rem; line-height: 1.4;">
-                        <strong>Priorité absolue au renforcement RH.</strong> 
-                        70% du budget dédié aux ressources humaines pour garantir un accompagnement de qualité optimale.
-                    </p>
-
-                    <!-- Sous-blocs cliquables -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                        <div class="sub-card" onclick="toggleSubContent('repartition-budgetaire')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #f39200;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">📊 Répartition Budgétaire</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Graphique interactif</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('optimisation-couts')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #f39200;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">⚡ Optimisation Coûts</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Stratégie d'économies</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('guide-construction')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #f39200;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">📋 Guide Construction</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Méthodologie AAP</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('justification-choix')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #f39200;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">✅ Justification Choix</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Argumentaire stratégique</p>
-                        </div>
-                    </div>
-
-                    <!-- Contenu détaillé des sous-blocs (masqué par défaut) -->
-                    <div id="repartition-budgetaire" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fff8f0; border-radius: 10px; border-left: 4px solid #f39200;">
-                        <h4 style="color: #f39200; margin-bottom: 20px;">📊 Répartition Budgétaire - Priorité RH</h4>
-                        
-                        <!-- Graphique en barres horizontales -->
-                        <div style="max-width: 600px; margin: 0 auto;">
-                            <!-- Ressources Humaines - 70% -->
-                            <div style="margin-bottom: 20px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.08); border-left: 5px solid #f39200;">
-                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 12px;">
-                                    <div style="flex: 1;">
-                                        <h5 style="color: #171718; font-size: 1.1rem; font-weight: 700; margin: 0;">💼 Ressources Humaines</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem; margin: 5px 0 0 0;">1,0 ETP Mobilité - Accompagnement de qualité</p>
-                                    </div>
-                                    <div style="font-size: 2rem; font-weight: 800; color: #f39200;">70%</div>
-                                </div>
-                                <div style="background: #f8f9fa; height: 12px; border-radius: 6px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #f39200 0%, #ff9f00 100%); height: 100%; width: 70%; border-radius: 6px; transition: all 0.8s ease;"></div>
-                                </div>
-                            </div>
-
-                            <!-- Prestations spécialisées - 20% -->
-                            <div style="margin-bottom: 20px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.08); border-left: 5px solid #95c11f;">
-                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 12px;">
-                                    <div style="flex: 1;">
-                                        <h5 style="color: #171718; font-size: 1.1rem; font-weight: 700; margin: 0;">🤝 Prestations spécialisées</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem; margin: 5px 0 0 0;">CIEL, self-garage, Pistes Solidaires</p>
-                                    </div>
-                                    <div style="font-size: 2rem; font-weight: 800; color: #95c11f;">20%</div>
-                                </div>
-                                <div style="background: #f8f9fa; height: 12px; border-radius: 6px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #95c11f 0%, #a8d424 100%); height: 100%; width: 20%; border-radius: 6px; transition: all 0.8s ease;"></div>
-                                </div>
-                            </div>
-
-                            <!-- Fonctionnement - 10% -->
-                            <div style="margin-bottom: 20px; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 3px 8px rgba(0,0,0,0.08); border-left: 5px solid #2897d5;">
-                                <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 12px;">
-                                    <div style="flex: 1;">
-                                        <h5 style="color: #171718; font-size: 1.1rem; font-weight: 700; margin: 0;">⚙️ Fonctionnement & déplacements</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem; margin: 5px 0 0 0;">Frais de structure optimisés</p>
-                                    </div>
-                                    <div style="font-size: 2rem; font-weight: 800; color: #2897d5;">10%</div>
-                                </div>
-                                <div style="background: #f8f9fa; height: 12px; border-radius: 6px; overflow: hidden;">
-                                    <div style="background: linear-gradient(90deg, #2897d5 0%, #3ba3e0 100%); height: 100%; width: 10%; border-radius: 6px; transition: all 0.8s ease;"></div>
-                                </div>
-                            </div>
-
-                            <!-- Résumé visuel -->
-                            <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; border: 2px solid #dee2e6;">
-                                <h5 style="text-align: center; color: #171718; font-weight: 700; margin-bottom: 15px;">📊 Répartition Budgétaire Optimisée</h5>
-                                <div style="display: flex; justify-content: space-around; align-items: center;">
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.5rem; font-weight: 800; color: #f39200;">70%</div>
-                                        <div style="font-size: 0.8rem; color: #6c757d;">Humain</div>
-                                    </div>
-                                    <div style="font-size: 1.5rem; color: #dee2e6;">+</div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.5rem; font-weight: 800; color: #95c11f;">20%</div>
-                                        <div style="font-size: 0.8rem; color: #6c757d;">Expertise</div>
-                                    </div>
-                                    <div style="font-size: 1.5rem; color: #dee2e6;">+</div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.5rem; font-weight: 800; color: #2897d5;">10%</div>
-                                        <div style="font-size: 0.8rem; color: #6c757d;">Structure</div>
-                                    </div>
-                                    <div style="font-size: 1.5rem; color: #dee2e6;">=</div>
-                                    <div style="text-align: center;">
-                                        <div style="font-size: 1.5rem; font-weight: 800; color: #a3195b;">100%</div>
-                                        <div style="font-size: 0.8rem; color: #6c757d;">Impact</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="optimisation-couts" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fff8f0; border-radius: 10px; border-left: 4px solid #f39200;">
-                        <h4 style="color: #f39200; margin-bottom: 15px;">⚡ Stratégie d'optimisation des coûts</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Mutualisation des expertises</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Prestations externes ciblées (20%)</li>
-                                    <li>Partenariats gratuits privilégiés</li>
-                                    <li>Outils numériques réutilisables</li>
-                                    <li>Économies d'échelle territoriales</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Fonctionnement maîtrisé</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Frais de structure minimisés (10%)</li>
-                                    <li>Déplacements optimisés</li>
-                                    <li>Gestion budgétaire rigoureuse</li>
-                                    <li>Reporting transparent</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="guide-construction" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fff8f0; border-radius: 10px; border-left: 4px solid #f39200;">
-                        <h4 style="color: #f39200; margin-bottom: 15px;">📋 Méthodologie de construction budgétaire</h4>
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <a href="https://mlpb-tools.github.io/tuto_budget-aap/" target="_blank" rel="noopener noreferrer" 
-                               style="display: inline-block; background: linear-gradient(135deg, #f39200 0%, #e67e00 100%); 
-                                      color: white; padding: 12px 25px; border-radius: 20px; text-decoration: none; 
-                                      font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(243, 146, 0, 0.3); 
-                                      transition: all 0.3s ease;">
-                                📊 Accéder au guide complet →
-                            </a>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Étapes clés</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Analyse des besoins territoriaux</li>
-                                    <li>Dimensionnement des actions</li>
-                                    <li>Calcul des coûts unitaires</li>
-                                    <li>Optimisation budgétaire</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Outils disponibles</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Simulateur budgétaire interactif</li>
-                                    <li>Modèles de calcul validés</li>
-                                    <li>Exemples concrets MLPB</li>
-                                    <li>Aide à la justification</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="justification-choix" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fff8f0; border-radius: 10px; border-left: 4px solid #f39200;">
-                        <h4 style="color: #f39200; margin-bottom: 15px;">✅ Argumentaire stratégique</h4>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 15px;">
-                            <div style="padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #f39200;">
-                                <h5 style="color: #171718; margin-bottom: 8px;">🎯 Priorité RH justifiée</h5>
-                                <p style="font-size: 0.9rem; color: #171718; margin: 0;">La mobilité nécessite un accompagnement humain de qualité. 70% en RH garantit la réussite des parcours et l'atteinte des objectifs d'insertion.</p>
-                            </div>
-                            <div style="padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #95c11f;">
-                                <h5 style="color: #171718; margin-bottom: 8px;">🤝 Prestations ciblées</h5>
-                                <p style="font-size: 0.9rem; color: #171718; margin: 0;">20% pour des expertises spécialisées (CIEL, self-garage) permet d'accéder à des compétences pointues sans surcoût structurel.</p>
-                            </div>
-                            <div style="padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #2897d5;">
-                                <h5 style="color: #171718; margin-bottom: 8px;">💰 Gestion optimisée</h5>
-                                <p style="font-size: 0.9rem; color: #171718; margin: 0;">10% de fonctionnement démontre une gestion rigoureuse et une maximisation de l'impact sur le terrain.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #f39200;">
-                        <p style="font-size: 0.9rem; color: #6c757d; margin: 0; text-align: center;">
-                            <strong>Approche équilibrée :</strong> Investissement humain prioritaire • Expertises mutualisées • Gestion optimisée
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte 5: Impact -->
-            <div class="card impact">
-                <div class="card-header">
-                    <div class="card-icon">📊</div>
-                    <div class="card-title">Impact Attendu<br><small style="font-weight: 400; color: #6c757d;">Transformation qualitative & organisationnelle</small></div>
-                </div>
-                <div class="card-content">
-                    <p style="margin-bottom: 20px; font-weight: 500; color: #a3195b; font-size: 1.1rem; line-height: 1.4;">
-                        <strong>Une transformation qualitative profonde.</strong> 
-                        Au-delà des chiffres, le projet FSE+ génère des impacts durables sur les compétences des jeunes et l'organisation territoriale.
-                    </p>
-
-                    <!-- Sous-blocs cliquables -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
-                        <div class="sub-card" onclick="toggleSubContent('impacts-qualitatifs')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #a3195b;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🎯 Impacts Qualitatifs</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Compétences & insertion</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('impacts-organisationnels')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #a3195b;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">🏗️ Impacts Organisationnels</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">MLPB & territoire</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('indicateurs-qualite')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #a3195b;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">📈 Indicateurs Qualité</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Mesure de l'impact</p>
-                        </div>
-                        
-                        <div class="sub-card" onclick="toggleSubContent('plus-value-fse')" style="background: #f8f9fa; padding: 15px; border-radius: 10px; cursor: pointer; border-left: 3px solid #a3195b;">
-                            <h4 style="color: #171718; margin-bottom: 5px;">✨ Plus-value FSE+</h4>
-                            <p style="font-size: 0.9rem; color: #6c757d;">Complémentarité dispositifs</p>
-                        </div>
-                    </div>
-
-                    <!-- Contenu détaillé des sous-blocs (masqué par défaut) -->
-                    <div id="impacts-qualitatifs" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #a3195b;">
-                        <h4 style="color: #a3195b; margin-bottom: 15px;">🎯 Impacts qualitatifs - Compétences & insertion</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Renforcement de l'autonomie</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Utilisation autonome des transports</li>
-                                    <li>Gestion complète d'un déplacement</li>
-                                    <li>Entretien véhicule de base</li>
-                                    <li>Planification itinéraires complexes</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Compétences transversales (life skills)</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Confiance en soi renforcée</li>
-                                    <li>Adaptabilité & flexibilité</li>
-                                    <li>Communication interculturelle</li>
-                                    <li>Prise d'initiative & leadership</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Valorisation employeurs</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Attestations de compétences</li>
-                                    <li>Certificats mobilité européenne</li>
-                                    <li>Badges numériques pour CV</li>
-                                    <li>Portfolio expériences validées</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Citoyenneté active</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Amélioration image de soi</li>
-                                    <li>Sentiment d'être acteur</li>
-                                    <li>Engagement territorial renforcé</li>
-                                    <li>Ouverture européenne & interculturelle</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="impacts-organisationnels" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #a3195b;">
-                        <h4 style="color: #a3195b; margin-bottom: 15px;">🏗️ Impacts organisationnels - MLPB & territoire</h4>
-                        <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #f39200;">
-                            <h5 style="color: #171718; margin-bottom: 10px;">Professionnalisation de la MLPB</h5>
-                            <ul style="font-size: 0.9rem; color: #171718;">
-                                <li><strong>Création 1 ETP mobilité</strong> → consolidation Pôle Outillage & Innovation</li>
-                                <li>Meilleure articulation conseillers référents ↔ thématiques mobilité</li>
-                                <li>Montée en compétences équipe sur enjeux européens</li>
-                                <li>Structuration méthodologique accompagnement mobilité</li>
+                            <p class="branch-objective">Donner du sens au projet et renforcer la motivation</p>
+                            <ul class="branch-skills">
+                                <li>Autoconnaissance</li>
+                                <li>Pensée critique</li>
+                                <li>Prise de décision</li>
+                                <li>Fixation d'objectifs</li>
+                                <li>Sens de l'initiative</li>
                             </ul>
                         </div>
-                        
-                        <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #95c11f;">
-                            <h5 style="color: #171718; margin-bottom: 10px;">Renforcement partenariats stratégiques</h5>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
-                                <div>
-                                    <strong style="color: #95c11f;">Mobilité locale :</strong>
-                                    <ul style="font-size: 0.85rem; color: #171718; margin-top: 5px;">
-                                        <li>CIEL (mobilité solidaire)</li>
-                                        <li>Auto-écoles partenaires</li>
-                                        <li>Collectivités transport</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <strong style="color: #2897d5;">Mobilité internationale :</strong>
-                                    <ul style="font-size: 0.85rem; color: #171718; margin-top: 5px;">
-                                        <li>Pistes Solidaires (expert)</li>
-                                        <li>Réseau européen Take Off</li>
-                                        <li>Organismes d'accueil</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <strong style="color: #d60b52;">Emploi transfrontalier :</strong>
-                                <ul style="font-size: 0.85rem; color: #171718; margin-top: 5px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-                                    <li>Lanbide</li>
-                                    <li>Bidasoa Activa</li>
-                                    <li>Eurorégion</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div id="indicateurs-qualite" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #a3195b;">
-                        <h4 style="color: #a3195b; margin-bottom: 15px;">📈 Indicateurs qualité - Mesure de l'impact</h4>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Indicateurs de compétences</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>% jeunes autonomes en mobilité (avant/après)</li>
-                                    <li>Nombre de certifications obtenues</li>
-                                    <li>Badges numériques délivrés</li>
-                                    <li>Évaluation soft skills (grille standardisée)</li>
-                                </ul>
+                        <div class="branch orange">
+                            <div class="branch-header">
+                                <span class="branch-icon">⚖️</span>
+                                <h3 class="branch-title">Statut, droits & devoirs</h3>
                             </div>
-                            <div>
-                                <h5 style="color: #171718; margin-bottom: 10px;">Indicateurs d'insertion</h5>
-                                <ul style="font-size: 0.9rem; color: #171718;">
-                                    <li>Taux d'insertion à 6 mois post-mobilité</li>
-                                    <li>Qualité des emplois obtenus</li>
-                                    <li>Durabilité des parcours</li>
-                                    <li>Satisfaction employeurs</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; border: 2px solid #a3195b;">
-                            <h5 style="color: #171718; margin-bottom: 10px;">Méthode d'évaluation</h5>
-                            <p style="font-size: 0.9rem; color: #171718; margin: 0;">
-                                <strong>Suivi longitudinal :</strong> Questionnaires avant/pendant/après mobilité • Entretiens qualitatifs • 
-                                Enquêtes employeurs • Analyse cohortes sur 18 mois
-                            </p>
-                        </div>
-                    </div>
-
-                    <div id="plus-value-fse" class="sub-content" style="display: none; margin-top: 20px; padding: 20px; background: #fdf2f8; border-radius: 10px; border-left: 4px solid #a3195b;">
-                        <h4 style="color: #a3195b; margin-bottom: 15px;">✨ Plus-value FSE+ - Complémentarité dispositifs</h4>
-                        <div style="margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #f39200;">
-                            <h5 style="color: #171718; margin-bottom: 10px;">🎯 Surcroît qualitatif sans doublon</h5>
-                            <p style="font-size: 0.9rem; color: #171718; margin-bottom: 10px;">
-                                Le projet FSE+ <strong>ne remplace pas</strong> les dispositifs nationaux mais apporte une <strong>dimension européenne et innovante</strong> :
-                            </p>
-                            <ul style="font-size: 0.9rem; color: #171718;">
-                                <li><strong>CEJ/PACEA :</strong> Accompagnement de droit commun maintenu</li>
-                                <li><strong>FSE+ :</strong> Spécialisation mobilité + dimension européenne</li>
-                                <li><strong>Articulation :</strong> Conseiller référent + animateur mobilité</li>
+                            <p class="branch-objective">Comprendre le cadre légal et administratif</p>
+                            <ul class="branch-skills">
+                                <li>Responsabilité personnelle et sociale</li>
+                                <li>Pensée critique</li>
+                                <li>Gestion du stress</li>
+                                <li>Communication efficace</li>
                             </ul>
                         </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                            <div style="padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #95c11f;">
-                                <h5 style="color: #171718; margin-bottom: 8px;">Dispositifs nationaux</h5>
-                                <ul style="font-size: 0.85rem; color: #171718;">
-                                    <li>Accompagnement global CEJ</li>
-                                    <li>Suivi PACEA classique</li>
-                                    <li>Prestations Pôle emploi</li>
-                                    <li>Formations de droit commun</li>
-                                </ul>
+
+                        <div class="branch pink">
+                            <div class="branch-header">
+                                <span class="branch-icon">🌍</span>
+                                <h3 class="branch-title">Sensibilisation interculturelle</h3>
                             </div>
-                            <div style="padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #a3195b;">
-                                <h5 style="color: #171718; margin-bottom: 8px;">Apport FSE+ spécifique</h5>
-                                <ul style="font-size: 0.85rem; color: #171718;">
-                                    <li>Expertise mobilité approfondie</li>
-                                    <li>Dimension européenne/interculturelle</li>
-                                    <li>Partenariats transfrontaliers</li>
-                                    <li>Innovation pédagogique</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-radius: 8px; border: 2px solid #95c11f;">
-                            <p style="text-align: center; font-weight: 600; color: #171718; margin: 0;">
-                                <strong>Logique de complémentarité :</strong> Droit commun + Spécialisation européenne = Parcours renforcé
-                            </p>
+                            <p class="branch-objective">Préparer à vivre dans un environnement multiculturel</p>
+                            <ul class="branch-skills">
+                                <li>Empathie et ouverture d'esprit</li>
+                                <li>Tolérance à l'ambiguïté</li>
+                                <li>Communication interculturelle</li>
+                                <li>Résolution de problèmes</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #a3195b;">
-                        <p style="font-size: 0.9rem; color: #6c757d; margin: 0; text-align: center;">
-                            <strong>Impact systémique :</strong> Transformation des jeunes • Professionnalisation MLPB • Dynamique territoriale
-                        </p>
+            <!-- PHASE 2: PARTIR -->
+            <div class="phase-container">
+                <div class="phase-header partir" onclick="togglePhase(this)">
+                    <div>
+                        <span class="phase-icon">✈️</span>
+                        <span>PARTIR</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="phase-content">
+                    <div class="branches">
+                        <div class="branch red">
+                            <div class="branch-header">
+                                <span class="branch-icon">❤️</span>
+                                <h3 class="branch-title">Santé et sécurité</h3>
+                            </div>
+                            <p class="branch-objective">Se prémunir des risques et maintenir son bien-être</p>
+                            <ul class="branch-skills">
+                                <li>Gestion du stress et des émotions</li>
+                                <li>Prise de décision responsable</li>
+                                <li>Autonomie</li>
+                                <li>Gestion de soi</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch orange">
+                            <div class="branch-header">
+                                <span class="branch-icon">📄</span>
+                                <h3 class="branch-title">La Paperasse</h3>
+                            </div>
+                            <p class="branch-objective">Gérer les aspects administratifs avant le départ</p>
+                            <ul class="branch-skills">
+                                <li>Organisation & planification</li>
+                                <li>Persévérance</li>
+                                <li>Autonomie</li>
+                                <li>Sens des responsabilités</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch green">
+                            <div class="branch-header">
+                                <span class="branch-icon">🗣️</span>
+                                <h3 class="branch-title">Soutien linguistique (OLS)</h3>
+                            </div>
+                            <p class="branch-objective">Développer la capacité à communiquer</p>
+                            <ul class="branch-skills">
+                                <li>Curiosité et apprentissage continu</li>
+                                <li>Confiance en soi</li>
+                                <li>Communication verbale et non verbale</li>
+                                <li>Persévérance</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch blue">
+                            <div class="branch-header">
+                                <span class="branch-icon">🧳</span>
+                                <h3 class="branch-title">Le voyage</h3>
+                            </div>
+                            <p class="branch-objective">Être autonome dans la logistique du départ</p>
+                            <ul class="branch-skills">
+                                <li>Gestion du temps et des priorités</li>
+                                <li>Résolution de problèmes</li>
+                                <li>Autonomie</li>
+                                <li>Confiance en soi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 3: VIVRE AILLEURS -->
+            <div class="phase-container">
+                <div class="phase-header vivre" onclick="togglePhase(this)">
+                    <div>
+                        <span class="phase-icon">🌏</span>
+                        <span>VIVRE AILLEURS</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="phase-content">
+                    <div class="branches">
+                        <div class="branch pink">
+                            <div class="branch-header">
+                                <span class="branch-icon">🧘‍♀️</span>
+                                <h3 class="branch-title">Préparation psychologique</h3>
+                            </div>
+                            <p class="branch-objective">Se préparer mentalement à l'éloignement</p>
+                            <ul class="branch-skills">
+                                <li>Conscience de soi</li>
+                                <li>Résilience</li>
+                                <li>Gestion des émotions</li>
+                                <li>Autonomie émotionnelle</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch orange">
+                            <div class="branch-header">
+                                <span class="branch-icon">💰</span>
+                                <h3 class="branch-title">Budget & gestion financière</h3>
+                            </div>
+                            <p class="branch-objective">Gérer ses ressources pendant la mobilité</p>
+                            <ul class="branch-skills">
+                                <li>Responsabilité</li>
+                                <li>Prise de décision</li>
+                                <li>Planification</li>
+                                <li>Résolution de problèmes</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch pink">
+                            <div class="branch-header">
+                                <span class="branch-icon">🏠</span>
+                                <h3 class="branch-title">Vie collective</h3>
+                            </div>
+                            <p class="branch-objective">Vivre en communauté dans un cadre inconnu</p>
+                            <ul class="branch-skills">
+                                <li>Communication assertive</li>
+                                <li>Coopération</li>
+                                <li>Empathie</li>
+                                <li>Résolution de conflits</li>
+                            </ul>
+                        </div>
+
+                        <div class="branch red">
+                            <div class="branch-header">
+                                <span class="branch-icon">📍</span>
+                                <h3 class="branch-title">Vivre loin de chez soi</h3>
+                            </div>
+                            <p class="branch-objective">Gérer l'éloignement et les nouvelles routines</p>
+                            <ul class="branch-skills">
+                                <li>Autonomie</li>
+                                <li>Résilience</li>
+                                <li>Gestion des émotions</li>
+                                <li>Auto-motivation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 4: VALORISER -->
+            <div class="phase-container">
+                <div class="phase-header valoriser" onclick="togglePhase(this)">
+                    <div>
+                        <span class="phase-icon">⭐</span>
+                        <span>VALORISER</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="phase-content">
+                    <div class="branches">
+                        <div class="branch violet">
+                            <div class="branch-header">
+                                <span class="branch-icon">💎</span>
+                                <h3 class="branch-title">Engagement & valeurs</h3>
+                            </div>
+                            <p class="branch-objective">Donner du sens à son expérience</p>
+                            <ul class="branch-skills">
+                                <li>Pensée critique & éthique</li>
+                                <li>Engagement civique</li>
+                                <li>Créativité sociale</li>
+                                <li>Leadership positif</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="synthesis">
+            <h2>🔗 Synthèse Transversale</h2>
+            <div class="synthesis-grid">
+                <div class="synthesis-card card-orange">
+                    <h3>🎯 Préparer</h3>
+                    <p>Autoconnaissance • Planification • Prise de décision</p>
+                </div>
+                <div class="synthesis-card card-green">
+                    <h3>✈️ Partir</h3>
+                    <p>Autonomie • Gestion du stress • Communication</p>
+                </div>
+                <div class="synthesis-card card-pink">
+                    <h3>🌏 Vivre ailleurs</h3>
+                    <p>Résilience • Empathie • Tolérance • Coopération</p>
+                </div>
+                <div class="synthesis-card card-violet">
+                    <h3>⭐ Valoriser</h3>
+                    <p>Confiance en soi • Pensée critique • Engagement</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Fonction pour ouvrir les cartes
-        function openCard(cardType) {
-            alert(`Ouverture de la section : ${cardType}\n\nCette carte sera développée avec des sous-blocs interactifs selon vos besoins.`);
+        function togglePhase(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.toggle-icon');
+            
+            content.classList.toggle('open');
+            icon.classList.toggle('open');
         }
-
-        // Fonction pour afficher/masquer le contenu des sous-blocs
-        function toggleSubContent(contentId) {
-            const content = document.getElementById(contentId);
-            const allContents = document.querySelectorAll('.sub-content');
-            
-            // Masquer tous les autres contenus
-            allContents.forEach(item => {
-                if (item.id !== contentId) {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Afficher/masquer le contenu sélectionné
-            if (content.style.display === 'none' || content.style.display === '') {
-                content.style.display = 'block';
-                content.style.animation = 'slideIn 0.3s ease-out';
-            } else {
-                content.style.display = 'none';
-            }
-        }
-
-        // Animation d'entrée des cartes
-        window.addEventListener('load', function() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    card.style.transition = 'all 0.6s ease';
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
-                }, index * 100);
-            });
-        });
-
-        // Effet hover amélioré
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Interactivité pour le graphique donut mini
-        document.addEventListener('DOMContentLoaded', function() {
-            const chartSegments = document.querySelectorAll('.chart-segment');
-            
-            chartSegments.forEach(segment => {
-                segment.addEventListener('mouseenter', function() {
-                    const percentage = this.getAttribute('data-percentage');
-                    const label = this.getAttribute('data-label');
-                    
-                    // Effet visuel
-                    this.style.filter = 'brightness(1.2) drop-shadow(0 2px 4px rgba(0,0,0,0.2))';
-                    
-                    // Optionnel : afficher une info-bulle
-                    console.log(`${label}: ${percentage}%`);
-                });
-                
-                segment.addEventListener('mouseleave', function() {
-                    this.style.filter = 'brightness(1)';
-                });
-            });
-        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98524eec24fdee96',t:'MTc1ODg4NDk1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
