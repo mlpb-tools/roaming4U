@@ -112,7 +112,7 @@
         }
 
         .phase-content.open {
-            max-height: 3000px;
+            max-height: 5000px;
         }
 
         .branches {
@@ -166,6 +166,44 @@
             align-items: center;
             margin-bottom: 12px;
             gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            padding: 15px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+        }
+
+        .branch-header:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,1), rgba(255,255,255,0.9));
+            transform: translateX(3px);
+        }
+
+        .branch-header-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .branch-toggle-icon {
+            font-size: 1em;
+            transition: transform 0.3s ease;
+            color: #666;
+        }
+
+        .branch-toggle-icon.open {
+            transform: rotate(180deg);
+        }
+
+        .branch-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .branch-content.open {
+            max-height: 10000px;
         }
 
         .branch-icon {
@@ -213,6 +251,103 @@
         .branch.pink .branch-skills li::before { color: #d60b52; }
         .branch.violet .branch-skills li::before { color: #a3195b; }
         .branch.red .branch-skills li::before { color: #9f3d3f; }
+
+        .branch-duration {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 15px;
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .skill-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 3px solid;
+        }
+
+        .branch.blue .skill-section { border-left-color: #2897d5; }
+        .branch.orange .skill-section { border-left-color: #f39200; }
+        .branch.green .skill-section { border-left-color: #95c11f; }
+        .branch.pink .skill-section { border-left-color: #d60b52; }
+        .branch.violet .skill-section { border-left-color: #a3195b; }
+        .branch.red .skill-section { border-left-color: #9f3d3f; }
+
+        .skill-header {
+            font-weight: bold;
+            font-size: 1em;
+            color: #171718;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-objective {
+            font-size: 0.85em;
+            color: #555;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .skill-resources, .skill-activities {
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        .skill-resources strong, .skill-activities strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #171718;
+        }
+
+        .skill-resources ul, .skill-activities ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-resources li, .skill-activities li {
+            padding: 4px 0;
+            line-height: 1.5;
+        }
+
+        .skill-resources a {
+            color: #2897d5;
+            text-decoration: none;
+            border-bottom: 1px dotted #2897d5;
+            transition: all 0.2s ease;
+        }
+
+        .skill-resources a:hover {
+            color: #1f7ab3;
+            border-bottom: 1px solid #1f7ab3;
+        }
+
+        .activity-description {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+            margin-top: 5px;
+            padding-left: 10px;
+            border-left: 2px solid #e0e0e0;
+        }
+
+        .branch-intro {
+            font-size: 0.9em;
+            color: #171718;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff8e1;
+            border-radius: 8px;
+            border-left: 4px solid #f39200;
+            font-style: italic;
+        }
 
         .synthesis {
             margin-top: 60px;
@@ -310,47 +445,323 @@
                 </div>
                 <div class="phase-content">
                     <div class="branches">
-                        <div class="branch blue">
+                        <div class="branch blue" id="bloc1">
                             <div class="branch-header">
-                                <span class="branch-icon">🎯</span>
+                                <span class="branch-icon">🌟</span>
                                 <h3 class="branch-title">Explorer sa mobilité</h3>
                             </div>
                             <p class="branch-objective">Donner du sens au projet et renforcer la motivation</p>
-                            <ul class="branch-skills">
-                                <li>Autoconnaissance</li>
-                                <li>Pensée critique</li>
-                                <li>Prise de décision</li>
-                                <li>Fixation d'objectifs</li>
-                                <li>Sens de l'initiative</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 3 à 4 heures (en autonomie ou en atelier collectif)</div>
+
+                            <!-- Autoconnaissance -->
+                            <div class="skill-section">
+                                <div class="skill-header">📖 Autoconnaissance</div>
+                                <div class="skill-objective">Objectif : Identifier ses forces, qualités, besoins et valeurs</div>
+                                <div class="skill-resources">
+                                    <strong>Ressources à intégrer :</strong>
+                                    <ul>
+                                        <li>🎲 <a href="https://www.fondationjeunesentete.org/comprendre/comprendre-le-stress/#quiz" target="_blank">Quiz "Apprendre à me connaître"</a> – Fondation Jeunes en Tête</li>
+                                        <li>📝 <a href="https://bit.ly/zoom-valeurs-jeune" target="_blank">Fiche "Zoom sur mes valeurs"</a></li>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Carnet Prépa D'Part</a></li>
+                                    </ul>
+                                </div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Qui suis-je ?" (p. 51 du guide)
+                                            <div class="activity-description">🧠 Le jeune remplit une grille avec 3 de ses forces, situations où elles se sont exprimées, et les émotions ressenties. À faire en individuel puis discussion en binôme. → Transformer en fiche interactive ou carte mentale (Canva)</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Pensée critique -->
+                            <div class="skill-section">
+                                <div class="skill-header">💬 Pensée critique</div>
+                                <div class="skill-objective">Objectif : Identifier ses représentations, interroger ses croyances sur la mobilité</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Atelier débat "Ce que je pense / ce que j'entends" (p. 52)
+                                            <div class="activity-description">Le jeune complète des phrases type "Je pense que…" / "On dit que…" à propos de la mobilité (ex : "partir c'est pour les riches") puis échange avec d'autres. But : confronter ses opinions, élargir son regard. → À transformer en grille Canva à compléter + séance à animer</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource bonus :</strong>
+                                    <ul>
+                                        <li>Quiz <a href="https://www.canva.com/design/DAFcNdwU8sA/view" target="_blank">"Tu préfères – Quelle mobilité pour toi ?"</a> (Eurodesk)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Prise de décision -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Prise de décision</div>
+                                <div class="skill-objective">Objectif : Apprendre à trancher entre plusieurs options</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "3 scénarios / 3 choix" (p. 53)
+                                            <div class="activity-description">Le jeune choisit entre trois projets fictifs (mobilité, stage local, job), réfléchit aux +/–, puis explique son choix. Exercice de priorisation et verbalisation. → À transformer en carte interactive à choix multiples (type H5P/Genially)</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Fixation d'objectifs -->
+                            <div class="skill-section">
+                                <div class="skill-header">🎯 Fixation d'objectifs</div>
+                                <div class="skill-objective">Objectif : Structurer un projet personnel motivant</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Le But & les petits pas" (p. 55)
+                                            <div class="activity-description">Le jeune dessine son objectif principal et les mini-étapes pour y arriver. On insiste sur la progression et le réalisme. À faire en individuel + partage oral. → Canva à créer avec flèches visuelles et curseur de progression</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource ROAMING complémentaire :</strong>
+                                    <ul>
+                                        <li>Atelier Objectifs SMART (fiche Canva à créer)</li>
+                                        <li>Prépa D'Part – Section "mon plan de route"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Sens de l'initiative -->
+                            <div class="skill-section">
+                                <div class="skill-header">💥 Sens de l'initiative</div>
+                                <div class="skill-objective">Objectif : Passer à l'action et oser contacter, tester, proposer</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Défi "Mon premier petit pas" (p. 56)
+                                            <div class="activity-description">Le jeune s'engage à faire 1 action dans la semaine pour faire avancer son projet : appeler un conseiller, en parler à un proche, consulter une offre… Suivi optionnel par le groupe ou référent. → Formulaire interactif ou fiche à cocher en ligne</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Complément ROAMING :</strong>
+                                    <ul>
+                                        <li>Témoignage vidéo <a href="https://www.youtube.com/watch?v=m-5WPsYxDoI" target="_blank">"Ils l'ont fait"</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="branch orange">
+                        <div class="branch orange" id="bloc2">
                             <div class="branch-header">
-                                <span class="branch-icon">⚖️</span>
+                                <span class="branch-icon">📜</span>
                                 <h3 class="branch-title">Statut, droits & devoirs</h3>
                             </div>
                             <p class="branch-objective">Comprendre le cadre légal et administratif</p>
-                            <ul class="branch-skills">
-                                <li>Responsabilité personnelle et sociale</li>
-                                <li>Pensée critique</li>
-                                <li>Gestion du stress</li>
-                                <li>Communication efficace</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures (autonomie ou atelier)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir, c'est pas partir à l'arrache. Ton projet doit être cadré et sécurisé : papiers, sécurité, responsabilités. Ce bloc t'aide à comprendre tes droits, tes devoirs, et à devenir acteur responsable de ton départ."
+                            </div>
+
+                            <!-- Responsabilité personnelle et sociale -->
+                            <div class="skill-section">
+                                <div class="skill-header">🛂 Responsabilité personnelle et sociale</div>
+                                <div class="skill-objective">Objectif : Comprendre que partir implique des engagements (règlement, contrat, comportement responsable)</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ce que je peux / Ce que je dois" (p. 58)
+                                            <div class="activity-description">Liste participative des libertés + obligations dans une mobilité (ex : respecter les horaires, assurer ses tâches, sécurité collective). → À intégrer sous forme de fiche Canva + discussion guidée</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🧾 Extrait de contrat ou charte de volontariat à commenter (PDF à adapter) → À intégrer comme visionneuse "Exemple de contrat à lire ensemble"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Pensée critique -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Pensée critique (droits VS devoirs)</div>
+                                <div class="skill-objective">Objectif : Réfléchir à la relation entre ce que j'attends et ce que j'assume</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Les cartes inversées" (p. 60)
+                                            <div class="activity-description">Chaque carte décrit une situation (ex : "Je ne suis pas payé pendant 2 semaines") et demande : est-ce acceptable ? que faire ? But : analyser ses réactions face à l'injustice ou au flou. → À transformer en quiz H5P ou scénario de réaction (Genially)</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Gestion du stress administratif -->
+                            <div class="skill-section">
+                                <div class="skill-header">😌 Gestion du stress administratif</div>
+                                <div class="skill-objective">Objectif : Apprendre à anticiper et à se repérer dans les démarches</div>
+                                <div class="skill-resources">
+                                    <strong>Ressources à intégrer :</strong>
+                                    <ul>
+                                        <li>📋 Check-list "Départ à l'étranger" (Europe Direct ou ROAMING) → À intégrer en visionneuse PDF</li>
+                                        <li>📽️ Vidéo : Préparer ses documents pour partir (Eurodesk) → À intégrer via YouTube (prévoir bouton "Voir la vidéo")</li>
+                                    </ul>
+                                </div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ma liste de priorités" (p. 61)
+                                            <div class="activity-description">Le jeune classe ses démarches par urgence, importance, blocage. Objectif : mieux s'organiser face à une montagne de choses. → À transformer en grille drag & drop ou fiche Canva</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Communication efficace -->
+                            <div class="skill-section">
+                                <div class="skill-header">🗣️ Communication efficace</div>
+                                <div class="skill-objective">Objectif : Savoir demander de l'aide et interagir avec les institutions</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu de rôle "Parler à mon organisme d'envoi" (p. 63)
+                                            <div class="activity-description">Le jeune simule un appel à un partenaire (ex : pour signaler un retard, poser une question). But : désinhiber la prise de contact avec un adulte référent. → À scénariser sous forme de mini-dialogue à compléter</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Gestion du stress / imprévus -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧘 Gestion du stress / imprévus</div>
+                                <div class="skill-objective">Objectif : Réagir face à une situation floue (papier manquant, bug administratif)</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Cas pratique "Ma carte bancaire est bloquée" (p. 64)
+                                            <div class="activity-description">Que faire ? Qui contacter ? Quelles solutions ? → À transformer en fiche "Plan B / Plan C" ou mini escape admin</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="branch pink">
+                        <div class="branch pink" id="bloc3">
                             <div class="branch-header">
-                                <span class="branch-icon">🌍</span>
+                                <span class="branch-icon">🌐</span>
                                 <h3 class="branch-title">Sensibilisation interculturelle</h3>
                             </div>
                             <p class="branch-objective">Préparer à vivre dans un environnement multiculturel</p>
-                            <ul class="branch-skills">
-                                <li>Empathie et ouverture d'esprit</li>
-                                <li>Tolérance à l'ambiguïté</li>
-                                <li>Communication interculturelle</li>
-                                <li>Résolution de problèmes</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 3 à 4 heures (autonomie + collectif)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir, c'est pas juste changer de pays, c'est changer de regard. Ce bloc t'aide à comprendre les autres sans te perdre toi-même. Tu vas découvrir comment t'adapter, communiquer autrement et gérer le choc culturel."
+                            </div>
+
+                            <!-- Empathie et ouverture d'esprit -->
+                            <div class="skill-section">
+                                <div class="skill-header">🤝 Empathie et ouverture d'esprit</div>
+                                <div class="skill-objective">Objectif : Se mettre à la place de l'autre, comprendre sans juger.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Dans la peau de l'autre" (p. 67)
+                                            <div class="activity-description">Le jeune observe une photo ou une courte scène et imagine ce que ressentent les personnes, puis partage son interprétation. → À convertir en mini-jeu d'observation Canva ("Que vois-tu ? Que ressens-tu ?")</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎭 <a href="https://www.salto-youth.net/tools/toolbox/tool/derdians.2115/" target="_blank">Jeu des Derdian (SALTO Toolbox)</a> → Simulation interculturelle ludique à animer en groupe</li>
+                                        <li>📹 <a href="https://youtu.be/NtMLsUvpcvY" target="_blank">Vidéo Eurodesk "Se faire des amis à l'étranger"</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Tolérance à l'ambiguïté -->
+                            <div class="skill-section">
+                                <div class="skill-header">🌀 Tolérance à l'ambiguïté</div>
+                                <div class="skill-objective">Objectif : Accepter ce qu'on ne comprend pas tout de suite.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "L'inattendu" (p. 68)
+                                            <div class="activity-description">Chaque participant reçoit une situation "bizarre" (ex : repas sans couverts) et explique comment il réagirait. But : reconnaître que la différence n'est pas une erreur, mais une autre logique. → À intégrer en quiz à scénarios multiples / H5P.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>📘 Fiche "Courbe du choc culturel" (ROAMING) → À créer sur Canva : les 4 phases – Lune de miel, Frustration, Adaptation, Maîtrise. → À afficher comme infographie défilante</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Communication interculturelle -->
+                            <div class="skill-section">
+                                <div class="skill-header">💬 Communication interculturelle</div>
+                                <div class="skill-objective">Objectif : Identifier les différences de codes, gestes, attitudes.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Les gestes qui parlent" (p. 70)
+                                            <div class="activity-description">Le jeune associe des gestes à leurs significations selon les pays ; débrief collectif sur les malentendus possibles. → À convertir en quiz visuel Canva ou Genially.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🌐 <a href="https://www.coe.int/fr/web/interculturalcity/questionnaire" target="_blank">Quiz "Citoyenneté interculturelle" – Conseil de l'Europe</a></li>
+                                        <li>📹 <a href="https://youtu.be/bIHyTn9yT0Q" target="_blank">Vidéo Eurodesk "Time to Mind – Culture Shock"</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résolution de problèmes -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧩 Résolution de problèmes</div>
+                                <div class="skill-objective">Objectif : Savoir réagir positivement à une incompréhension culturelle.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Trouver la solution ensemble" (p. 71)
+                                            <div class="activity-description">Mise en situation : deux jeunes de cultures différentes doivent collaborer. Chacun exprime ses émotions, puis ils cherchent une issue commune. → À adapter en mini-scénario interactif "Et toi, tu ferais quoi ?"</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎮 <a href="https://www.salto-youth.net/tools/toolbox/tool/barnga.2108/" target="_blank">Jeu "Barnga" (adapté SALTO)</a> – Les règles changent sans prévenir ; idéal pour illustrer la confusion interculturelle</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Conscience de soi dans la diversité -->
+                            <div class="skill-section">
+                                <div class="skill-header">💖 Conscience de soi dans la diversité</div>
+                                <div class="skill-objective">Objectif : Comprendre ses propres biais et émotions face à la différence.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Fiche "Mon filtre culturel" (p. 72)
+                                            <div class="activity-description">Auto-évaluation : ce que je trouve "normal" chez moi / "bizarre" ailleurs. But : repérer ses automatismes et ouvrir son regard. → Fiche PDF interactive à intégrer avec curseur "Je découvre / Je comprends / Je m'adapte".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage ROAMING</a> – Chapitre "Ma découverte des différences"</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -369,58 +780,420 @@
                     <div class="branches">
                         <div class="branch red">
                             <div class="branch-header">
-                                <span class="branch-icon">❤️</span>
-                                <h3 class="branch-title">Santé et sécurité</h3>
+                                <span class="branch-icon">🧘‍♀️</span>
+                                <h3 class="branch-title">Santé & Sécurité</h3>
                             </div>
                             <p class="branch-objective">Se prémunir des risques et maintenir son bien-être</p>
-                            <ul class="branch-skills">
-                                <li>Gestion du stress et des émotions</li>
-                                <li>Prise de décision responsable</li>
-                                <li>Autonomie</li>
-                                <li>Gestion de soi</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 3 heures (en autonomie ou atelier encadré)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir, c'est kiffant… mais faut rester en forme et savoir gérer les imprévus ! Ce bloc t'aide à apprendre à te protéger, à rester zen, et à garder le bon équilibre pendant ton expérience à l'étranger."
+                            </div>
+
+                            <!-- Gestion du stress & des émotions -->
+                            <div class="skill-section">
+                                <div class="skill-header">😌 Gestion du stress & des émotions</div>
+                                <div class="skill-objective">Objectif : Identifier ses émotions, apprendre à se calmer, transformer le stress en énergie positive.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon thermomètre émotionnel" (p. 74)
+                                            <div class="activity-description">Le jeune place ses émotions sur un visuel de "thermomètre" et apprend à repérer ses signaux d'alerte (colère, fatigue, peur). → À convertir en infographie interactive ou curseur Canva.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://www.lumni.fr/video/je-suis-anxieux-que-faire" target="_blank">Psychotuto : "Je suis anxieux, que faire ?" – Lumni</a></li>
+                                        <li>🌬️ <a href="https://youtu.be/OjN1_ZL9cMg" target="_blank">Exercice respiration guidée (cohérence cardiaque)</a></li>
+                                        <li>📘 Fiche LS4Y "Mes stratégies anti-stress" (p. 75) – Brainstorming collectif : que fais-je quand je me sens dépassé ?</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Autonomie & sécurité personnelle -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧍 Autonomie & sécurité personnelle</div>
+                                <div class="skill-objective">Objectif : Savoir se protéger et réagir en situation à risque (vol, incident, problème de santé).</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Scénarios de galère" (p. 77)
+                                            <div class="activity-description">Le jeune tire une situation type (ex : vol de sac, carte bloquée, conflit de colocation) et cherche les bonnes réactions possibles. → À transformer en jeu de cartes digital ou quiz H5P "Tu ferais quoi ?"</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>📕 Guide des "Emmerdes à l'étranger" – Info Jeunes (PDF) → À intégrer via visionneuse (pages : urgences, vols, assurances)</li>
+                                        <li>🧭 Fiche ROAMING – "Plan B / Plan C" sécurité → À produire sous Canva : modèle check-list anticipée</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Soutien social & communication -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧑‍🤝‍🧑 Soutien social & communication</div>
+                                <div class="skill-objective">Objectif : Savoir demander de l'aide, reconnaître quand on a besoin de soutien.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mes personnes ressources" (p. 78)
+                                            <div class="activity-description">Le jeune dresse la carte de ses contacts utiles : famille, amis, référents ML, tuteur à l'étranger, pairs. → À créer comme carte mentale Canva ou fiche "Mon réseau de secours"</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>📱 <a href="https://bit.ly/time-to-mind-guide" target="_blank">Guide "Time to Mind" – Eurodesk</a></li>
+                                        <li>🧩 Quiz "À qui je parle quand ça va mal ?" (LS4Y, p. 79) → Jeu de rôle : choisir la bonne personne selon la situation (tuteur, pair, professionnel)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Prise de décision responsable -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧭 Prise de décision responsable</div>
+                                <div class="skill-objective">Objectif : Identifier les risques, faire des choix éclairés, anticiper les conséquences.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Le bon réflexe" (p. 80)
+                                            <div class="activity-description">Chaque scénario propose plusieurs réactions possibles ; le jeune choisit la plus adaptée. → À transformer en quiz Canva / Genially interactif.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>📘 Fiche ROAMING – "Checklist sécurité avant départ" → À intégrer en PDF téléchargeable</li>
+                                        <li>🧾 <a href="https://pastel.diplomatie.gouv.fr/fildariane/" target="_blank">Carte consulaire / service Ariane</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Bien-être et équilibre de vie -->
+                            <div class="skill-section">
+                                <div class="skill-header">💗 Bien-être et équilibre de vie</div>
+                                <div class="skill-objective">Objectif : Préserver sa santé physique et mentale pendant la mobilité.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon équilibre de vie" (p. 82)
+                                            <div class="activity-description">Le jeune trace un cercle "vie perso / pro / loisirs / repos" et repère les déséquilibres. → À convertir en roue interactive Canva + curseurs ajustables.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🌿 Fiche "Physical & Mental Fitness" – LS4Y Module 6 → À intégrer depuis le kit Canva LS4Y</li>
+                                        <li>🧘 Podcast "Prendre soin de soi à l'étranger" (Eurodesk / Erasmus+) → Lien à ajouter une fois hébergé</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch orange">
                             <div class="branch-header">
-                                <span class="branch-icon">📄</span>
+                                <span class="branch-icon">🧾</span>
                                 <h3 class="branch-title">La Paperasse</h3>
                             </div>
                             <p class="branch-objective">Gérer les aspects administratifs avant le départ</p>
-                            <ul class="branch-skills">
-                                <li>Organisation & planification</li>
-                                <li>Persévérance</li>
-                                <li>Autonomie</li>
-                                <li>Sens des responsabilités</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures (atelier ou module individuel)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Avant de partir, il faut un peu de sérieux ! La mobilité, c'est aussi savoir se débrouiller dans les papiers, les démarches, les délais. Ce module t'aide à devenir autonome et organisé, sans paniquer. Tu vas apprendre à faire les choses dans l'ordre, à ne rien oublier, et à te sentir fièr·e de gérer ton projet comme un pro !"
+                            </div>
+
+                            <!-- Organisation & planification -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧭 Organisation & planification</div>
+                                <div class="skill-objective">Objectif : Apprendre à s'organiser, anticiper les démarches et planifier les étapes clés.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon calendrier de départ" (p. 66 du guide)
+                                            <div class="activity-description">Le jeune place sur une ligne du temps toutes les étapes importantes : dépôt du dossier, billets, hébergement, assurances, vaccins. → À transformer en timeline Canva ou tableau à compléter (glisser-déposer).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📋 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Checklist "Je prépare mon départ"</a></li>
+                                        <li>📅 Template Excel ou Google Sheet "Calendrier de préparation" → À proposer en téléchargement (bouton Télécharger ma to-do list)</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>📽️ <a href="https://www.youtube.com/@EurodeskFrance" target="_blank">Vidéo "Préparer ses papiers avant de partir" – Eurodesk France</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Persévérance -->
+                            <div class="skill-section">
+                                <div class="skill-header">💪 Persévérance</div>
+                                <div class="skill-objective">Objectif : Développer la constance face aux démarches longues ou complexes.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Le parcours des obstacles administratifs" (p. 67)
+                                            <div class="activity-description">Simulation où chaque carte représente un obstacle : document manquant, e-mail perdu, rendez-vous repoussé. Objectif : apprendre à garder son calme et rebondir à chaque imprévu. → À adapter en jeu de cartes Canva ou mini-simulation Genially.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📘 Fiche "Plan B / Plan C" – Anticiper les galères → À insérer dans la section Boîte à outils anti-galère</li>
+                                        <li>🎧 Podcast témoignage : "Quand j'ai failli abandonner mon projet mobilité…" (jeune volontaire Erasmus+) → Intégrer via iframe ou lien direct</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Autonomie -->
+                            <div class="skill-section">
+                                <div class="skill-header">🚀 Autonomie</div>
+                                <div class="skill-objective">Objectif : Être capable de gérer seul les démarches clés avant le départ.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ma mini-mission d'autonomie" (p. 68)
+                                            <div class="activity-description">Le jeune choisit une action concrète à réaliser sans aide : prendre un rendez-vous, appeler un organisme, remplir un dossier. → À transformer en fiche Je m'en charge (checklist à cocher + zone de commentaires).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Carnet Prépa D'Part</a> – rubrique Mes démarches administratives</li>
+                                        <li>🧰 Fiche "Mes contacts utiles" (Mission Locale / Partenaires) – à personnaliser selon territoire</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Sens des responsabilités -->
+                            <div class="skill-section">
+                                <div class="skill-header">⚖️ Sens des responsabilités</div>
+                                <div class="skill-objective">Objectif : Prendre conscience que les démarches relèvent d'un engagement personnel.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon contrat moral" (p. 70)
+                                            <div class="activity-description">Le jeune signe une mini-charte symbolique de bonne préparation : "Je m'engage à… vérifier mes papiers, prévenir si j'ai un retard, demander de l'aide si besoin." → À intégrer comme fiche à signer digitalement (bouton "Je m'engage").</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>📝 Exemple de contrat / charte de mobilité (PDF editable) → Visionneuse PDF ou bouton Télécharger ma charte</li>
+                                        <li>🎮 Mini quiz "Responsable ou pas ?" – Cas pratiques : "Je n'ai pas vérifié la validité de mon passeport" → choix multiple / retour immédiat. → Format H5P ou Canva quiz</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch green">
                             <div class="branch-header">
-                                <span class="branch-icon">🗣️</span>
+                                <span class="branch-icon">💬</span>
                                 <h3 class="branch-title">Soutien linguistique (OLS)</h3>
                             </div>
                             <p class="branch-objective">Développer la capacité à communiquer</p>
-                            <ul class="branch-skills">
-                                <li>Curiosité et apprentissage continu</li>
-                                <li>Confiance en soi</li>
-                                <li>Communication verbale et non verbale</li>
-                                <li>Persévérance</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures (individuel + collectif possible)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Pas besoin d'être bilingue pour vivre une super expérience à l'étranger ! Dans ce module, tu vas apprendre à te débrouiller, à oser parler, et à utiliser des outils simples pour te faire comprendre partout. L'important, ce n'est pas d'avoir zéro faute, mais de communiquer avec confiance."
+                            </div>
+
+                            <!-- Curiosité et apprentissage continu -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Curiosité et apprentissage continu</div>
+                                <div class="skill-objective">Objectif : Donner envie d'apprendre une langue et de s'exposer à d'autres codes linguistiques et culturels.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Les langues que je connais déjà sans le savoir" (p. 72)
+                                            <div class="activity-description">Le jeune liste les mots étrangers qu'il connaît déjà (musique, séries, marques, voyages). Objectif : valoriser la curiosité naturelle et lever les freins ("je ne parle pas de langues"). → À créer en fiche Canva à compléter ou mini-jeu trouve la langue.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🎧 Podcast "Une langue, une rencontre" – témoignage de jeunes Erasmus+ → iframe audio / lien direct</li>
+                                        <li>🌍 Infographie "Pourquoi apprendre une langue ouvre des portes" (Canva interactif à créer)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Confiance en soi -->
+                            <div class="skill-section">
+                                <div class="skill-header">💪 Confiance en soi</div>
+                                <div class="skill-objective">Objectif : Se sentir capable de parler même sans tout comprendre.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Oops, je me trompe et alors ?" (p. 74)
+                                            <div class="activity-description">Jeu collectif où le jeune répète des phrases simples dans une autre langue, même avec des erreurs volontaires. Objectif : dédramatiser l'erreur et renforcer la confiance. → À transformer en mini "défi vidéo" (Canva/Genially) : "ose dire 3 phrases dans une autre langue".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://erasmusplus.fr/ols" target="_blank">Vidéo "Les 5 astuces pour parler sans stress" – France Éducation International / OLS</a></li>
+                                        <li>🧠 Fiche "Mes phrases de survie à l'étranger" (PDF) – à personnaliser selon la destination</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Communication verbale et non verbale -->
+                            <div class="skill-section">
+                                <div class="skill-header">🗣️ Communication verbale et non verbale</div>
+                                <div class="skill-objective">Objectif : Décoder les gestes, les intonations, et adapter sa manière de s'exprimer.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Je te comprends sans parler" (p. 76)
+                                            <div class="activity-description">Travail en binôme : faire deviner une situation sans mots (ex : demander son chemin, commander un café). À animer en présentiel ou via jeu vidéo interactif (caméra on/off). → À transformer en fiche Canva avec cartes "situations à mimer".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🎬 <a href="https://www.youtube.com/watch?v=Ks5F1KqQfK8" target="_blank">Vidéo interactive "Les gestes qui changent de sens selon le pays"</a></li>
+                                        <li>🎨 Poster visuel : "Parler avec ses mains" (Canva illustré à créer)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Persévérance -->
+                            <div class="skill-section">
+                                <div class="skill-header">📆 Persévérance</div>
+                                <div class="skill-objective">Objectif : Maintenir la motivation pour progresser un peu chaque jour.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Défi "5 minutes par jour" (p. 78)
+                                            <div class="activity-description">Le jeune choisit 3 actions linguistiques simples à faire chaque jour : écouter une chanson, lire un article, répéter une phrase. → À transformer en calendrier d'entraînement Canva (checklist à cocher).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>📱 <a href="https://erasmusplus.fr/ols" target="_blank">Plateforme OLS – Online Linguistic Support (Erasmus+)</a></li>
+                                        <li>🧩 Mini-quiz "Vocabulaire du quotidien" (Canva ou H5P) – 10 mots essentiels à traduire dans sa langue cible</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch blue">
                             <div class="branch-header">
-                                <span class="branch-icon">🧳</span>
+                                <span class="branch-icon">✈️</span>
                                 <h3 class="branch-title">Le voyage</h3>
                             </div>
                             <p class="branch-objective">Être autonome dans la logistique du départ</p>
-                            <ul class="branch-skills">
-                                <li>Gestion du temps et des priorités</li>
-                                <li>Résolution de problèmes</li>
-                                <li>Autonomie</li>
-                                <li>Confiance en soi</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2h à 3h (autonomie ou animation de groupe)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "C'est le grand moment ! Avant de décoller, il faut savoir se débrouiller : billets, valises, trajets, arrivée sur place… Ce module t'aide à devenir un vrai globe-trotter organisé, autonome et confiant. Le but : partir sereinement, sans stress et sans mauvaise surprise."
+                            </div>
+
+                            <!-- Gestion du temps et des priorités -->
+                            <div class="skill-section">
+                                <div class="skill-header">⏰ Gestion du temps et des priorités</div>
+                                <div class="skill-objective">Objectif : Savoir planifier son départ et gérer plusieurs tâches en même temps.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Je gère mon temps" (p. 81 du guide)
+                                            <div class="activity-description">Le jeune répartit une liste de tâches (valise, billets, papiers, transfert, santé) selon 3 niveaux de priorité : urgent / important / à prévoir. → À transformer en tableau drag & drop interactif ou fiche Canva "Mes urgences du départ".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🗓️ <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Checklist Prépa Départ – Carnet Prépa D'Part</a></li>
+                                        <li>📘 Fiche "Mon plan de route" (PDF) : calendrier des démarches & valise à cocher → Visionneuse intégrée</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résolution de problèmes -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧩 Résolution de problèmes</div>
+                                <div class="skill-objective">Objectif : Apprendre à faire face aux imprévus logistiques ou techniques.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Le vol retardé" (p. 83)
+                                            <div class="activity-description">Simulation de problème : ton avion est retardé, ton logement n'est pas dispo, ou ta valise est perdue. Objectif : identifier rapidement les solutions possibles (appeler, prévenir, improviser). → À transformer en mini "jeu de rôle digital" avec choix multiples.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🧰 Boîte à outils anti-galère ROAMING (section dédiée : fiches "perte de passeport", "retard de vol", "urgence médicale")</li>
+                                        <li>🎧 Podcast "Mon premier grand départ" – témoignage d'un jeune parti seul</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Autonomie -->
+                            <div class="skill-section">
+                                <div class="skill-header">🚍 Autonomie</div>
+                                <div class="skill-objective">Objectif : Être capable d'organiser ses déplacements et de gérer seul les démarches de transport et hébergement.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Du point A au point B" (p. 84)
+                                            <div class="activity-description">Le jeune prépare un itinéraire de voyage : du domicile au logement d'accueil, en notant horaires, correspondances, contacts. → À adapter sous forme de carte interactive "Je trace ma route" (Canva ou Genially).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🗺️ Fiche "Plan de transport / arrivée" (PDF) – à compléter selon le pays</li>
+                                        <li>📱 Astuce numérique : Google Maps hors ligne + traduction instantanée → Ajouter en encart interactif "Outils malins à télécharger avant de partir"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Confiance en soi -->
+                            <div class="skill-section">
+                                <div class="skill-header">🌍 Confiance en soi</div>
+                                <div class="skill-objective">Objectif : Se sentir capable de voyager seul et de s'adapter à l'inconnu.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon kit confiance" (p. 86)
+                                            <div class="activity-description">Le jeune remplit une fiche avec 3 choses qu'il sait déjà bien faire, 3 inquiétudes, et 3 phrases positives à se répéter ("Je vais y arriver", "Je suis préparé"). → À transformer en fiche Canva ou mini audio journal.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://www.youtube.com/@EurodeskFrance" target="_blank">Vidéo "Premier départ à l'étranger : 5 conseils clés" – Eurodesk</a></li>
+                                        <li>🧠 Fiche "Je pars, mais je reste moi-même" (Canva) – travail sur confiance & adaptabilité</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -439,58 +1212,423 @@
                     <div class="branches">
                         <div class="branch pink">
                             <div class="branch-header">
-                                <span class="branch-icon">🧘‍♀️</span>
+                                <span class="branch-icon">💜</span>
                                 <h3 class="branch-title">Préparation psychologique</h3>
                             </div>
                             <p class="branch-objective">Se préparer mentalement à l'éloignement</p>
-                            <ul class="branch-skills">
-                                <li>Conscience de soi</li>
-                                <li>Résilience</li>
-                                <li>Gestion des émotions</li>
-                                <li>Autonomie émotionnelle</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures (individuel + échanges collectifs possibles)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir, c'est excitant… mais parfois un peu flippant aussi 😅. Quitter sa famille, ses amis, son quotidien, ça bouscule ! Ce module t'aide à te sentir prêt dans ta tête, à gérer tes émotions, à garder ton équilibre et ton moral avant le départ."
+                            </div>
+
+                            <!-- Conscience de soi -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Conscience de soi</div>
+                                <div class="skill-objective">Objectif : Identifier ses émotions face au départ, mieux comprendre ce qui provoque stress, excitation ou peur.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mes émotions de voyage" (p. 88)
+                                            <div class="activity-description">Le jeune liste les émotions ressenties quand il pense à partir : peur, joie, impatience, inquiétude… puis les classe entre "à apprivoiser" et "à cultiver". → À créer en fiche Canva avec pictogrammes émotionnels / roue des émotions.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🎲 Quiz "Comment je réagis face au changement ?" (interactif Canva) → À créer à partir des profils émotionnels LS4Y</li>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Carnet Prépa D'Part</a> – Partie "Ma préparation mentale"</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://www.lumni.fr/video/je-suis-anxieux-que-faire" target="_blank">Vidéo "Je suis anxieux, que faire ?" (Lumni)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résilience -->
+                            <div class="skill-section">
+                                <div class="skill-header">💪 Résilience</div>
+                                <div class="skill-objective">Objectif : Apprendre à rebondir face aux moments de doute ou de mal du pays.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Atelier "Mon plan anti-coup de mou" (p. 89)
+                                            <div class="activity-description">Identifier trois situations difficiles possibles (ex : solitude, langue, fatigue) et réfléchir à une solution pour chacune. → À transformer en fiche Canva "Plan B émotionnel" avec 3 encadrés + pictos.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📗 Fiche "Et si ça va pas ?" – Boîte à outils anti-galère (ROAMING) → Inclure les contacts d'urgence, numéros d'écoute, partenaires sur place</li>
+                                        <li>🎧 Podcast "Comment j'ai surmonté le mal du pays" – témoignage d'un jeune volontaire</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>📄 <a href="https://bit.ly/time-to-mind-guide" target="_blank">Guide Time To Mind (Eurodesk/CIDJ – PDF)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Gestion des émotions -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧘 Gestion des émotions</div>
+                                <div class="skill-objective">Objectif : Apprendre à apaiser le stress, la peur de l'inconnu et à développer des routines de bien-être.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon moment ressource" (p. 91)
+                                            <div class="activity-description">Le jeune choisit une activité ou un rituel (musique, marche, dessin, respiration) qui l'aide à se recentrer. → À transformer en fiche interactive "Mon kit détente" avec playlist, images, cases à cocher.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎧 <a href="https://youtu.be/OjN1_ZL9cMg" target="_blank">Audio-guides de respiration / cohérence cardiaque</a></li>
+                                        <li>🪶 Fiche Canva "Mes ressources bien-être avant le départ" (à créer à partir des modèles LS4Y)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Autonomie émotionnelle -->
+                            <div class="skill-section">
+                                <div class="skill-header">🤝 Autonomie émotionnelle</div>
+                                <div class="skill-objective">Objectif : Se responsabiliser dans la gestion de son humeur, apprendre à demander de l'aide.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Qui m'aide quand ça ne va pas ?" (p. 92)
+                                            <div class="activity-description">Carte de son réseau de soutien (amis, famille, référent, pairs). → À créer sous forme de carte mentale interactive ou mini-fiche Canva.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📱 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Fiche "Mon réseau d'appui" (Carnet de voyage)</a></li>
+                                        <li>💬 Simulateur "Qui j'appelle si…" (Genially ou formulaire interactif à choix multiples)</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch orange">
                             <div class="branch-header">
-                                <span class="branch-icon">💰</span>
+                                <span class="branch-icon">💸</span>
                                 <h3 class="branch-title">Budget & gestion financière</h3>
                             </div>
                             <p class="branch-objective">Gérer ses ressources pendant la mobilité</p>
-                            <ul class="branch-skills">
-                                <li>Responsabilité</li>
-                                <li>Prise de décision</li>
-                                <li>Planification</li>
-                                <li>Résolution de problèmes</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures (individuel ou collectif)</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "L'argent, c'est souvent ce qui fait peur avant de partir… mais bien géré, c'est ton meilleur allié ! 💪 Ce module t'aide à comprendre ton budget, anticiper les imprévus, et savoir faire durer ton argent sans te priver. Objectif : être autonome, responsable et malin pendant ta mobilité."
+                            </div>
+
+                            <!-- Responsabilité -->
+                            <div class="skill-section">
+                                <div class="skill-header">⚖️ Responsabilité</div>
+                                <div class="skill-objective">Objectif : Comprendre que gérer un budget, c'est une question d'équilibre et de choix personnels.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mes priorités de dépenses" (p. 94 du guide)
+                                            <div class="activity-description">Le jeune répartit un budget fictif (400 €) sur différentes catégories : logement, nourriture, loisirs, transport, téléphone, épargne. → À transformer en jeu interactif Canva ou Excel auto-calculé. But : comprendre ses priorités, parler de responsabilité financière.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📊 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Tableur "Mon premier budget mobilité" (fichier interactif)</a></li>
+                                        <li>📕 Fiche "Mes dépenses mensuelles types à l'étranger" (PDF) → Visionneuse PDF intégrée</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://www.cidj.com/" target="_blank">Vidéo "Bien gérer son budget étudiant ou volontaire" – CIDJ / Info Jeunes</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Prise de décision -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Prise de décision</div>
+                                <div class="skill-objective">Objectif : Savoir choisir entre plusieurs options financières (hébergement, transport, assurances).</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Les bons choix" (p. 95)
+                                            <div class="activity-description">Scénarios de décisions : "Airbnb moins cher mais sans contrat / logement officiel plus cher mais sécurisé ?" → À transformer en jeu à choix multiples Genially ou quiz Canva.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>💼 Fiche "Comparer pour économiser" – outil de simulation d'options (logement, vols, assurances)</li>
+                                        <li>🔗 Mes outils pratiques de voyage : Rome2Rio, Skyscanner, Wise, etc.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Planification -->
+                            <div class="skill-section">
+                                <div class="skill-header">📅 Planification</div>
+                                <div class="skill-objective">Objectif : Prévoir ses ressources sur la durée et anticiper les aléas.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon budget à 3 temps" (p. 96)
+                                            <div class="activity-description">Diviser ses dépenses en trois phases : Avant le départ, pendant le séjour, au retour. → À créer en timeline budgétaire Canva (3 colonnes + icônes dépenses).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Carnet Prépa D'Part</a> – Section "Budget"</li>
+                                        <li>📘 Fiche "Ce que couvre mon programme" (volontariat, stage, etc.) → Visionneuse PDF intégrée ou téléchargeable</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résolution de problèmes -->
+                            <div class="skill-section">
+                                <div class="skill-header">💳 Résolution de problèmes</div>
+                                <div class="skill-objective">Objectif : Apprendre à gérer les imprévus (vol, perte, retard de paiement).</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Cas pratique "Mon argent disparaît !" (p. 97)
+                                            <div class="activity-description">Situation-problème : perte de carte bancaire / arnaque / oubli de code. But : identifier les bons réflexes (bloquer la carte, contacter le consulat, prévenir l'assurance). → À transformer en fiche "Mes réflexes en cas de pépin" + mini quiz.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>📗 <a href="https://www.diplomatie.gouv.fr/" target="_blank">Guide "Les bons réflexes à l'étranger" – Service public.fr / France Diplomatie</a></li>
+                                        <li>🧰 Boîte à outils anti-galère ROAMING → Pop-up "En cas d'imprévu financier"</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch pink">
                             <div class="branch-header">
-                                <span class="branch-icon">🏠</span>
+                                <span class="branch-icon">🤝</span>
                                 <h3 class="branch-title">Vie collective</h3>
                             </div>
                             <p class="branch-objective">Vivre en communauté dans un cadre inconnu</p>
-                            <ul class="branch-skills">
-                                <li>Communication assertive</li>
-                                <li>Coopération</li>
-                                <li>Empathie</li>
-                                <li>Résolution de conflits</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir à l'étranger, c'est aussi apprendre à vivre avec d'autres. En colocation, en équipe ou en volontariat, tu vas découvrir que bien s'entendre, ça s'apprend ! Ce module t'aide à coopérer, communiquer sans conflit et faire de ton séjour une aventure collective réussie 💬."
+                            </div>
+
+                            <!-- Communication assertive -->
+                            <div class="skill-section">
+                                <div class="skill-header">💬 Communication assertive</div>
+                                <div class="skill-objective">Objectif : S'exprimer clairement sans agressivité ni passivité, écouter et se faire entendre.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Exprimer un besoin sans accuser" (p. 99 du guide)
+                                            <div class="activity-description">Le jeune reformule des phrases conflictuelles ("Tu ne ranges jamais !") en versions assertives ("J'ai besoin que l'espace reste propre pour me sentir bien"). → À transformer en quiz interactif ou carte "je reformule ma phrase".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🗣️ <a href="https://www.youtube.com/@EurodeskFrance" target="_blank">Vidéo : Communiquer efficacement dans une équipe interculturelle</a></li>
+                                        <li>📄 Fiche "Les 4 attitudes de communication" (PDF Canva) → Visionneuse intégrée</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Coopération -->
+                            <div class="skill-section">
+                                <div class="skill-header">🤲 Coopération</div>
+                                <div class="skill-objective">Objectif : Apprendre à collaborer, répartir les rôles, faire confiance et contribuer à la dynamique du groupe.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Jeu "Le défi du groupe parfait" (p. 101)
+                                            <div class="activity-description">Les jeunes doivent accomplir une tâche imaginaire (organiser un événement, cuisiner un repas) en définissant qui fait quoi. Objectif : observer les rôles naturels et discuter des points forts du travail en équipe. → À transformer en atelier présentiel ou mini-simulation Canva.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧩 Fiche "Construire une équipe efficace" (PDF – modèle à personnaliser)</li>
+                                        <li>🎥 Vidéo témoignage "Mon volontariat en groupe" (Erasmus+/Service Civique)</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎮 <a href="https://www.salto-youth.net/tools/toolbox/" target="_blank">Jeu coopératif "Lost in Translation" (SALTO Youth Toolbox)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Empathie -->
+                            <div class="skill-section">
+                                <div class="skill-header">💗 Empathie</div>
+                                <div class="skill-objective">Objectif : Développer la compréhension des émotions et des points de vue d'autrui.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Se mettre à la place de l'autre" (p. 103)
+                                            <div class="activity-description">Le jeune tire une carte avec une situation : "Ton coloc ne parle pas ta langue", "Quelqu'un te critique sur ta cuisine". Discussion : comment réagir sans juger ? → À adapter en jeu de cartes Canva ou quiz "Que ferais-tu à sa place ?"</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage</a> – Rubrique "Vivre ensemble"</li>
+                                        <li>🎧 Podcast : Vivre en colocation à l'étranger (témoignages)</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎞️ <a href="https://www.fondationjeunesentete.org" target="_blank">Vidéo "Empathie et bienveillance" – Fondation Jeunes en Tête</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résolution de conflits -->
+                            <div class="skill-section">
+                                <div class="skill-header">⚖️ Résolution de conflits</div>
+                                <div class="skill-objective">Objectif : Apprendre à gérer les désaccords sans rupture ni fuite, et à trouver un terrain d'entente.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Le médiateur" (p. 104)
+                                            <div class="activity-description">Trois rôles : "A" et "B" en conflit (colocation, partage des tâches), "C" médiateur neutre. Objectif : pratiquer la négociation et la recherche de solution gagnant-gagnant. → À transformer en mini-jeu de rôle Canva (cartes à distribuer).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧾 Charte de vie commune (modèle à compléter) → Visionneuse PDF intégrée avec signatures numériques</li>
+                                        <li>📘 Fiche "Gérer les tensions dans un groupe" – issue des ateliers de mobilité ROAMING</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎮 <a href="https://www.salto-youth.net/tools/toolbox/tool/the-village-of-conflicts.2753/" target="_blank">Jeu interactif "Le Village des Conflits" (SALTO Youth Toolbox)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="branch red">
                             <div class="branch-header">
-                                <span class="branch-icon">📍</span>
+                                <span class="branch-icon">🏠</span>
                                 <h3 class="branch-title">Vivre loin de chez soi</h3>
                             </div>
                             <p class="branch-objective">Gérer l'éloignement et les nouvelles routines</p>
-                            <ul class="branch-skills">
-                                <li>Autonomie</li>
-                                <li>Résilience</li>
-                                <li>Gestion des émotions</li>
-                                <li>Auto-motivation</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Partir, c'est découvrir un nouveau monde, mais aussi apprendre à vivre sans ton cocon. Ce module t'aide à t'adapter à ton nouvel environnement, à trouver un équilibre entre autonomie et repères personnels. Tu apprendras à organiser ta vie, garder ton énergie, et construire de nouvelles habitudes pour que ton séjour soit une réussite 💪."
+                            </div>
+
+                            <!-- Autonomie -->
+                            <div class="skill-section">
+                                <div class="skill-header">🚀 Autonomie</div>
+                                <div class="skill-objective">Objectif : Gérer seul son quotidien (repas, transport, logement, rythme personnel) et gagner en confiance.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ma journée type à l'étranger" (p. 106 du guide)
+                                            <div class="activity-description">Le jeune décrit une journée imaginaire dans son futur lieu de vie (horaires, repas, trajets, activités). → À transformer en fiche Canva "Mon nouveau quotidien" (icônes à déplacer). But : identifier ce qui change et anticiper les besoins pratiques.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📘 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage</a> – Section "Vie quotidienne"</li>
+                                        <li>🧭 Fiche "S'organiser seul à l'étranger" (PDF) – checklists repas / logement / transport</li>
+                                        <li>🎧 Podcast "Premiers jours à l'étranger : comment je me suis débrouillé"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Résilience -->
+                            <div class="skill-section">
+                                <div class="skill-header">💪 Résilience</div>
+                                <div class="skill-objective">Objectif : Faire face aux coups de blues, aux imprévus et à la solitude du début.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ma météo intérieure" (p. 108)
+                                            <div class="activity-description">Chaque jour, le jeune choisit une météo pour représenter son humeur (ensoleillé, nuageux, orageux) et ajoute une phrase explicative. → À transformer en journal d'humeur interactif Canva ou Genially. But : apprendre à observer ses émotions et à en parler si besoin.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://eurodesk.eu/fr/time-to-mind" target="_blank">Vidéo "Faire face au mal du pays" – Eurodesk / CIDJ</a></li>
+                                        <li>📄 <a href="https://bit.ly/time-to-mind-guide" target="_blank">Guide "Time to Mind" (Eurodesk – PDF)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Gestion des émotions -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧘 Gestion des émotions</div>
+                                <div class="skill-objective">Objectif : Reconnaître les émotions liées à l'éloignement, éviter la surcharge et garder un équilibre mental.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Stop, Respire, Réagis" (p. 110)
+                                            <div class="activity-description">3 étapes : 1) Identifier ce qui te stresse, 2) Respirer profondément, 3) Réagir par une action concrète. → À transformer en mini "coach respiration" (animation Canva ou fiche audio-guidée).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🎧 <a href="https://youtu.be/OjN1_ZL9cMg" target="_blank">Audio "Respiration de 5 minutes" (cohérence cardiaque)</a></li>
+                                        <li>🧠 Fiche "Mon kit anti-stress mobilité" – conseils + espace à remplir "ce qui me détend"</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🧩 Jeu "Le stressomètre" (Canva) – mesurer son niveau de tension et trouver des solutions</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Auto-motivation -->
+                            <div class="skill-section">
+                                <div class="skill-header">🌟 Auto-motivation</div>
+                                <div class="skill-objective">Objectif : Maintenir l'énergie et la motivation tout au long du séjour, malgré les hauts et les bas.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ma boussole de motivation" (p. 112)
+                                            <div class="activity-description">Le jeune écrit 3 raisons pour lesquelles il a choisi de partir et 3 choses qui le motivent à continuer. → À transformer en fiche Canva avec pictos "mon pourquoi" + espace photo souvenir. But : reconnecter avec le sens du projet pour surmonter les moments de doute.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📘 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage</a> – Rubrique "Mon aventure continue"</li>
+                                        <li>🎥 <a href="https://www.fondationjeunesentete.org" target="_blank">Vidéo "Pourquoi c'est normal de douter" – Fondation Jeunes en Tête</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -509,16 +1647,243 @@
                     <div class="branches">
                         <div class="branch violet">
                             <div class="branch-header">
-                                <span class="branch-icon">💎</span>
+                                <span class="branch-icon">🌟</span>
                                 <h3 class="branch-title">Engagement & valeurs</h3>
                             </div>
                             <p class="branch-objective">Donner du sens à son expérience</p>
-                            <ul class="branch-skills">
-                                <li>Pensée critique & éthique</li>
-                                <li>Engagement civique</li>
-                                <li>Créativité sociale</li>
-                                <li>Leadership positif</li>
-                            </ul>
+                            <div class="branch-duration">⏱️ Durée indicative : 2 à 3 heures</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Tu viens de vivre une expérience incroyable ! 🌍 Mais ce n'est pas qu'un souvenir : c'est une expérience qui t'a transformé·e. Dans ce module, tu vas apprendre à comprendre ce que cette aventure t'a apporté, à mettre en mots tes valeurs, et à continuer à t'engager — ici ou ailleurs."
+                            </div>
+
+                            <!-- Pensée critique & éthique -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧠 Pensée critique & éthique</div>
+                                <div class="skill-objective">Objectif : Réfléchir à ce qu'on a appris sur soi et sur le monde, remettre en perspective ses croyances.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Ce que j'ai découvert sur moi et les autres" (p. 114)
+                                            <div class="activity-description">Le jeune écrit trois choses qu'il a apprises sur lui-même et trois choses qu'il a découvertes sur les autres pendant sa mobilité. → À transformer en fiche Canva "Moi avant / Moi après" (effet miroir visuel).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📘 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage</a> – Rubrique "Mon retour"</li>
+                                        <li>🗣️ Podcast "Ce que ma mobilité m'a appris sur la tolérance" (témoignage audio)</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🎥 <a href="https://www.youtube.com/@EurodeskFrance" target="_blank">Vidéo "L'interculturalité, un apprentissage de la vie" – Eurodesk France</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Engagement civique -->
+                            <div class="skill-section">
+                                <div class="skill-header">🌍 Engagement civique</div>
+                                <div class="skill-objective">Objectif : Comprendre que la mobilité internationale peut être un levier pour agir localement.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "De retour, j'agis ici" (p. 115)
+                                            <div class="activity-description">Le jeune choisit une cause (écologie, inclusion, solidarité…) et imagine une action concrète à mettre en place à son retour. → À transformer en fiche Canva ou mini-carte projet "Mon engagement local".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🤝 Fiche "Je deviens ambassadeur·rice de la mobilité" (PDF) – modèle Mission Locale Pays Basque</li>
+                                        <li>🧩 Lien vers les programmes de volontariat local (Service Civique, JSI/VVVSI, Corps Européen de Solidarité) 🔗 <a href="https://europa.eu/youth/solidarity" target="_blank">europa.eu/youth/solidarity</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Créativité sociale -->
+                            <div class="skill-section">
+                                <div class="skill-header">🎨 Créativité sociale</div>
+                                <div class="skill-objective">Objectif : Transformer ses idées en projets utiles, inspirants ou artistiques.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Atelier "Raconte ton expérience autrement" (p. 117)
+                                            <div class="activity-description">Créer une carte postale, une photo symbolique ou une courte vidéo pour partager un souvenir fort. Objectif : valoriser sa créativité et exprimer ses apprentissages autrement. → À transformer en mini-projet Canva "Je raconte mon voyage".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📷 <a href="https://mlpb-tools.github.io/Boardingpass/" target="_blank">Outil "BoardingPass – Carte postale numérique de ma mobilité"</a></li>
+                                        <li>📹 Vidéo tutorielle : Créer une mini-capsule témoignage avec ton téléphone</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>💡 <a href="https://agitateursdemobilite.fr/" target="_blank">Galerie de témoignages "Agitateurs de Mobilité" (BFC)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Leadership positif -->
+                            <div class="skill-section">
+                                <div class="skill-header">💬 Leadership positif</div>
+                                <div class="skill-objective">Objectif : Renforcer la confiance en soi et inspirer d'autres jeunes à vivre la mobilité.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Transmettre à mon tour" (p. 119)
+                                            <div class="activity-description">Le jeune prépare un court témoignage ou un atelier à animer auprès d'autres jeunes. → À transformer en fiche Canva "Je deviens ambassadeur·rice de la mobilité".</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🏅 Guide "Animer un atelier témoignage mobilité" (Mission Locale) → Visionneuse PDF / téléchargeable</li>
+                                        <li>🎤 Podcast ou vidéo : "Ils sont devenus ambassadeurs de la mobilité" (témoignages)</li>
+                                    </ul>
+                                    <strong>Ressource complémentaire :</strong>
+                                    <ul>
+                                        <li>🔗 <a href="https://eurodesk.eu/time-to-move" target="_blank">Eurodesk – Campagne #TimeToMove : s'engager et témoigner</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHASE 5: SYNTHÈSE TRANSVERSALE -->
+            <div class="phase-container">
+                <div class="phase-header valoriser" onclick="togglePhase(this)">
+                    <div>
+                        <span class="phase-icon">🔄</span>
+                        <span>SYNTHÈSE TRANSVERSALE</span>
+                    </div>
+                    <span class="toggle-icon">▼</span>
+                </div>
+                <div class="phase-content">
+                    <div class="branches">
+                        <div class="branch violet" style="grid-column: 1 / -1;">
+                            <div class="branch-header">
+                                <span class="branch-icon">🔄</span>
+                                <h3 class="branch-title">Synthèse transversale</h3>
+                            </div>
+                            <p class="branch-objective">Devenir acteur de sa mobilité – Préparer, Partir, Vivre ailleurs, Valoriser</p>
+                            <div class="branch-duration">⏱️ Durée indicative : 1h30 à 2h</div>
+
+                            <!-- Introduction pédagogique -->
+                            <div class="branch-intro">
+                                💬 "Bravo 🎉 Tu es arrivé·e au bout de ton parcours ! Ce module t'aide à faire le point sur tout ce que tu as appris, à comprendre comment chaque étape t'a transformé·e et à valoriser tes compétences. L'objectif : repartir plus fort·e, avec des idées claires pour la suite… et la fierté d'avoir osé partir ! 💪"
+                            </div>
+
+                            <!-- Partie 1 : Préparer -->
+                            <div class="skill-section">
+                                <div class="skill-header">🧭 Partie 1 : Préparer</div>
+                                <div class="skill-objective">Compétences transversales : Autoconnaissance • Planification • Prise de décision</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon profil de voyageur" (p. 122 du guide)
+                                            <div class="activity-description">Le jeune identifie les qualités qu'il a mobilisées pendant la préparation (patience, curiosité, autonomie…). → À transformer en fiche Canva "Mes super-pouvoirs avant le départ" (visuel à cocher).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧭 <a href="https://mlpb-tools.github.io/prepa-d-part/" target="_blank">Carnet Prépa D'Part</a> – récapitulatif final "Mon projet en 5 étapes"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Partie 2 : Partir -->
+                            <div class="skill-section">
+                                <div class="skill-header">✈️ Partie 2 : Partir</div>
+                                <div class="skill-objective">Compétences transversales : Autonomie • Gestion du stress • Communication</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon premier défi à l'étranger" (p. 123)
+                                            <div class="activity-description">Le jeune raconte un moment où il a dû improviser, s'adapter ou faire preuve de courage. → À créer sous forme de mini "storyboard souvenir" Canva (photo + texte court).</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources complémentaires :</strong>
+                                    <ul>
+                                        <li>🎧 Podcast "Ma première semaine à l'étranger" (témoignages courts)</li>
+                                        <li>🧠 Fiche "Ce que j'ai appris en gérant l'imprévu" (Canva)</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Partie 3 : Vivre ailleurs -->
+                            <div class="skill-section">
+                                <div class="skill-header">🌏 Partie 3 : Vivre ailleurs</div>
+                                <div class="skill-objective">Compétences transversales : Résilience • Empathie • Tolérance • Coopération</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Le choc culturel : ma version" (p. 124)
+                                            <div class="activity-description">Le jeune décrit une situation interculturelle vécue et comment il y a réagi. Objectif : reconnaître ses émotions et sa capacité d'adaptation. → À intégrer sous forme de journal visuel ou carte "avant / après" interactive.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📘 <a href="https://mlpb-tools.github.io/carnet-de-voyage/" target="_blank">Carnet de Voyage</a> – Rubrique "Mes apprentissages humains"</li>
+                                        <li>🎥 Vidéo Eurodesk : "Comprendre la diversité, c'est se comprendre soi-même"</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Partie 4 : Valoriser -->
+                            <div class="skill-section">
+                                <div class="skill-header">⭐ Partie 4 : Valoriser</div>
+                                <div class="skill-objective">Compétences transversales : Confiance en soi • Pensée critique • Engagement</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Mon CV invisible" (p. 125)
+                                            <div class="activity-description">Le jeune identifie 5 compétences acquises pendant sa mobilité et les relie à des exemples concrets. → À transformer en fiche Canva CV visuel / badges de compétences. But : visualiser les apprentissages non formels.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>📝 <a href="https://mlpb-tools.github.io/Boardingpass/" target="_blank">Outil "BoardingPass" – Carte de valorisation de ma mobilité</a></li>
+                                        <li>🔗 <a href="https://europa.eu/europass/fr" target="_blank">Lien Europass Mobilité (certificat officiel européen)</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Partie 5 : Synthèse & projection -->
+                            <div class="skill-section">
+                                <div class="skill-header">🎓 Partie 5 : Synthèse & projection</div>
+                                <div class="skill-objective">Objectif : Conclure le parcours et se projeter dans la suite.</div>
+                                <div class="skill-activities">
+                                    <strong>Activité LS4Y :</strong>
+                                    <ul>
+                                        <li>Exercice "Et maintenant ?" (p. 126)
+                                            <div class="activity-description">Le jeune répond à 3 questions : 1️⃣ Ce que je retiens le plus de mon expérience, 2️⃣ Ce que je veux continuer à apprendre, 3️⃣ Ce que je veux transmettre à d'autres. → À transformer en fiche Canva "Mon manifeste personnel" ou mur interactif de partage collectif.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="skill-resources">
+                                    <strong>Ressources ROAMING :</strong>
+                                    <ul>
+                                        <li>🧭 Mur collaboratif "Ce que j'ai appris avec ROAMING" (Genially / Miro-like) → Les jeunes y publient une phrase ou image représentant leur parcours</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -556,6 +1921,72 @@
             content.classList.toggle('open');
             icon.classList.toggle('open');
         }
+
+        function toggleBranch(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.branch-toggle-icon');
+            
+            content.classList.toggle('open');
+            icon.classList.toggle('open');
+        }
+
+        // Initialiser tous les blocs comme déployables au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const branches = document.querySelectorAll('.branch');
+            
+            branches.forEach((branch, index) => {
+                // Skip le bloc synthèse avec style inline
+                if (branch.hasAttribute('style')) return;
+                
+                const header = branch.querySelector('.branch-header');
+                const objective = branch.querySelector('.branch-objective');
+                
+                if (!header || !objective) return;
+                
+                // Vérifier si déjà transformé
+                if (header.querySelector('.branch-toggle-icon')) return;
+                
+                // Rendre le header cliquable
+                header.style.cursor = 'pointer';
+                header.onclick = function() { toggleBranch(this); };
+                
+                // Créer le wrapper pour le contenu du header
+                const icon = header.querySelector('.branch-icon');
+                const title = header.querySelector('.branch-title');
+                
+                if (icon && title) {
+                    const headerContent = document.createElement('div');
+                    headerContent.className = 'branch-header-content';
+                    headerContent.appendChild(icon.cloneNode(true));
+                    headerContent.appendChild(title.cloneNode(true));
+                    
+                    // Créer l'icône toggle
+                    const toggleIcon = document.createElement('span');
+                    toggleIcon.className = 'branch-toggle-icon';
+                    toggleIcon.textContent = '▼';
+                    
+                    // Vider et reconstruire le header
+                    header.innerHTML = '';
+                    header.appendChild(headerContent);
+                    header.appendChild(toggleIcon);
+                }
+                
+                // Créer le conteneur branch-content
+                const branchContent = document.createElement('div');
+                branchContent.className = 'branch-content';
+                
+                // Déplacer tous les éléments après le header dans branch-content
+                let nextEl = header.nextElementSibling;
+                while (nextEl) {
+                    const current = nextEl;
+                    nextEl = nextEl.nextElementSibling;
+                    branchContent.appendChild(current);
+                }
+                
+                // Ajouter le branch-content au branch
+                branch.appendChild(branchContent);
+            });
+        });
     </script>
 </body>
 </html>
