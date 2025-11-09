@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Parcours Life Skills – Prépa Mobilité</title>
+<style>
+:root{
+  --bleu:#2897d5; --orange:#f39200; --vert:#95c11f; --rose:#d60b52; --violet:#a3195b;
+  --rouge:#9f3d3f; --noir:#171718; --gris:#f3f4f6; --bord:#e5e7eb; --txt:#171718;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Arial,system-ui; background:#fff; color:var(--txt)}
+/* Header */
+.header{padding:10px 14px;border-bottom:1px solid var(--bord);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.header img{height:38px; width:auto; display:block}
+.brand{display:flex;align-items:center;gap:10px}
+.h-titles{display:flex;flex-direction:column}
+.h-title{font-weight:900; font-size:16px; line-height:1.1}
+.h-sub{font-size:12px;color:#555}
+/* Layout */
+.layout{display:grid;grid-template-columns:260px 1fr;gap:12px;padding:12px}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+/* TOC */
+.toc{border:1px solid var(--bord);border-radius:10px;padding:10px;max-height:calc(100vh - 120px);overflow:auto}
+.toc h3{margin:0 0 8px;font-size:14px;color:#374151}
+.toc a{display:block;padding:8px 10px;margin:4px 0;border-radius:8px;text-decoration:none;color:#111827;font-size:13px;border:1px solid transparent}
+.toc a:hover{background:var(--gris)}
+.toc a.active{background:#eaf4fc;border-color:#cfe8fb}
+/* Main */
+.main{border:1px solid var(--bord);border-radius:10px;padding:14px}
+h1{margin:4px 0 8px;font-size:20px}
+.obj{background:var(--gris);padding:10px;border-radius:8px;margin:8px 0}
+.small{font-size:12px;color:#555}
+.block{margin:12px 0;padding:10px;border:1px solid var(--bord);border-radius:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,textarea,button,input{font:inherit}
+textarea{width:100%;min-height:100px;margin-top:6px}
+.btn{background:var(--bleu);color:#fff;border:none;border-radius:8px;padding:8px 12px;font-weight:700;cursor:pointer}
+.btn.secondary{background:var(--vert)} .btn.ghost{background:#fff;color:#111;border:1px solid var(--bord)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:10px}
+.kv{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f8fafc;border:1px solid var(--bord);font-size:12px}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+/* Chips phase */
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;margin-left:6px}
+.ch-id{background:#eaf4fc;color:#0b6fbf;border:1px solid #cfe8fb}
+.ch-me{background:#e9f7ee;color:#1c7c35;border:1px solid #cbeed8}
+.ch-mo{background:#fff0e0;color:#9a5700;border:1px solid #ffd7a8}
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <img alt="Mission Locale" src="https://static.wixstatic.com/media/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif/v1/fill/w_313,h_84,al_c,lg_1,q_80,enc_avif,quality_auto/dd5dab_47743b1c86024865ba19e623a3db327f~mv2.avif">
+      <div class="h-titles">
+        <div class="h-title">Parcours Life Skills – Préparation à la mobilité</div>
+        <div class="h-sub">Mission Locale • Référentiel LS4YOU • Prépa départ</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="kv"><strong id="statDone">0</strong>/<span id="statTotal">0</span> complétés</div>
+      <div class="kv"><strong id="statPoints">0</strong> pts</div>
+      <div class="kv">Badges: <strong id="statBadges">0</strong></div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="toc">
+      <h3>📚 Sommaire</h3>
+      <div id="toc"></div>
+    </aside>
+    <main class="main" id="main">Chargement…</main>
+  </div>
+
+<script>
+/* ========= Données (pages 1.1 → 4.3) =========
+   Chaque entrée définit : id, titre, objectif, intro,
+   eval[4], phase(id|me|mo), activité (nom, resume, ancrage, source, etapes[]),
+   et mini-activité (points, badge).
+*/
+function P(id,titre,objectif,intro,phase,evalArr,points,badge,actNom,actResume,actAncr,actSrc,actSteps){
+  return {id,titre,objectif,intro,phase,eval:evalArr,
+          act:{nom:actNom,resume:actResume,ancrage:actAncr,source:actSrc,etapes:actSteps},
+          game:{points,badge}};
+}
+const PAGES = [
+  // 1.1 Explorer sa mobilité
+  P("1-1-1","Auto-connaissance","Identifier tes forces, valeurs et motivations pour choisir une mobilité alignée avec qui tu es.",
+    "Repère ce qui te rend fort·e et ce qui t'aide à tenir en mobilité.",
+    "id",["Je connais mes forces","Je sais ce qui me motive","Je connais mes valeurs","Je peux expliquer ce qui me rend unique"],
+    10,"Explorateur·rice de Soi","Image de soi & feedback","Auto-éval + nuage de forces + valeurs.",
+    "Phase 1 – Identifier","LS4YOU – image de soi / feedback",["Quiz 10 items","Nuage de mots des forces","3 valeurs liées à ton projet"]),
+  P("1-1-2","Pensée critique","Déconstruire les idées reçues sur la mobilité et développer un regard nuancé.",
+    "Apprends à vérifier tes croyances et distinguer faits/opinions.",
+    "id",["Je remets en question mes idées","Je cherche des sources fiables","Je nuance mes jugements","Je distingue fait/opinion"],
+    10,"Penseur Critique","Je crois / Je vérifie","Cartes recto/verso idées reçues vs réalité.",
+    "Phase 1 – Identifier","LS4YOU – pensée critique",["Note 3 idées reçues","Trouve 2 sources par idée","Crée ta carte recto/verso"]),
+  P("1-1-3","Prise de décision","Analyser plusieurs scénarios de mobilité pour faire un choix éclairé.",
+    "Choisir sa mobilité, c'est peser le pour/contre.",
+    "id",["Je liste mes options","J'analyse pour/contre","J'intègre mes valeurs","Je justifie mes choix"],
+    10,"Décideur Éclairé","Matrice des options","Comparer 3 scénarios (pays/type/durée).",
+    "Phase 1 – Identifier","LS4YOU – matrices & cartes mentales",["Liste 3 options","Pour/Contre/Risques/Opportunités","Classement + justification"]),
+  P("1-1-4","Fixation d’objectifs","Structurer un projet personnel motivant et atteignable.",
+    "Transforme ton envie en plan d’actions.",
+    "me",["Je fixe des objectifs réalistes","Je priorise","Je planifie des étapes","Je mesure mes progrès"],
+    10,"Cap Fixé","Méthode ABC des objectifs","Prioriser, préciser, s'engager.",
+    "Phase 2 – Mesurer","LS4YOU – objectifs personnels (ABC)",["Définis 1 objectif ABC","Découpe en 3 étapes","Indique un indicateur de réussite"]),
+  P("1-1-5","Sens de l’initiative","Passer à l'action : contacter, tester, proposer.",
+    "Ose un premier pas concret.",
+    "mo",["Je prends des initiatives","Je contacte des personnes","Je teste en petit","Je persévère"],
+    10,"Initiateur·rice","Premier pas engagé","Micro-action test (mail/appel/visite).",
+    "Phase 3 – Mettre en œuvre","LS4YOU – mise en action / jeux de rôle",["Choisis 1 micro-action","Prépare un script bref","Réalise et note le retour"]),
+
+  // 1.2 Statut, droits & devoirs
+  P("1-2-1","Responsabilité perso & sociale","Comprendre qu’un départ implique des engagements (règlement, contrat, comportements).",
+    "Partir = responsabilités concrètes.","id",
+    ["Je lis mes engagements","Je comprends les règles","Je sais qui contacter","Je respecte les cadres"],
+    8,"Responsable","Check des engagements","Checklist contrat/règlement/comportements.",
+    "Phase 1 – Identifier","LS4YOU – responsabilisation",["Repère 3 obligations","Associe un risque si non respect","Note 1 action de prévention"]),
+  P("1-2-2","Pensée critique (droits/devoirs)","Réfléchir à l'équilibre entre attentes et responsabilités.",
+    "Ce que j’attends / ce que j’assume.","me",
+    ["Je clarifie mes droits","J’identifie mes devoirs","Je pèse l’équilibre","Je propose un compromis"],
+    8,"Équilibriste","Balance droits/devoirs","Carte à double entrée.",
+    "Phase 2 – Mesurer","LS4YOU – réflexion éthique",["Liste 3 droits","Relie 3 devoirs","Rédige 1 règle d’or perso"]),
+  P("1-2-3","Stress administratif","Apprendre à anticiper et se repérer dans les démarches.",
+    "Rendre la paperasse gérable.","id",
+    ["J’anticipe les délais","Je classe mes docs","Je garde mes preuves","Je reste calme"],
+    8,"Zen Admin","Boussole des démarches","Frise + dossiers + rappels.",
+    "Phase 1 – Identifier","LS4YOU – gestion du stress",["Liste 5 démarches","Crée une frise avec dates","Paramètre 2 rappels"]),
+  P("1-2-4","Communication institutions","Savoir demander de l'aide et interagir efficacement.",
+    "Parler clair pour être aidé.","mo",
+    ["Je me présente clairement","Je formule ma demande","Je fournis les pièces","Je remercie et relance"],
+    8,"Communicant","Script d’appel/mail","Modèle de message efficace.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – jeux de rôle & feedback",["Choisis un canal (mail/tel)","Complète le script modèle","Envoie ou simule et note le retour"]),
+
+  // 1.3 Sensibilisation interculturelle
+  P("1-3-1","Empathie & ouverture","Se mettre à la place de l’autre, comprendre sans juger.",
+    "Comprendre avant d’évaluer.","id",
+    ["J’écoute avant de répondre","Je reformule","Je cherche le contexte","J’accepte la différence"],
+    8,"Empathique","Carte d’empathie","Qui ? Qu’entend/voit/dit/ressent ?",
+    "Phase 1 – Identifier","LS4YOU – empathie",["Remplis la carte 4 cases","Note 1 surprise","Écris 1 intention d’écoute"]),
+  P("1-3-2","Tolérance à l’ambiguïté","Accepter ce qu’on ne comprend pas tout de suite.",
+    "Rester curieux face à l’inconnu.","me",
+    ["Je tolère l’incertitude","Je diffère mon jugement","Je pose des questions","Je reste respectueux"],
+    8,"Ouvert·e","Feu tricolore de l’ambiguïté","Classer situations en rouge/orange/vert.",
+    "Phase 2 – Mesurer","LS4YOU – gestion de l’inconnu",["Liste 3 situations floues","Décide une réaction saine","Prévois 1 ressource d’aide"]),
+  P("1-3-3","Communication interculturelle","Repérer codes, gestes, attitudes.",
+    "Décoder sans sur-interpréter.","id",
+    ["Je repère les codes","J’observe les gestes","Je vérifie le sens","J’adapte ma posture"],
+    8,"Médiateur·rice","Bingo des codes","Grille d’observation.",
+    "Phase 1 – Identifier","LS4YOU – communication",["Choisis 1 ressource","Note 5 codes repérés","Écris 1 règle de décodage"]),
+  P("1-3-4","Résolution (culture)","Réagir positivement à une incompréhension culturelle.",
+    "Transformer le malaise en apprentissage.","mo",
+    ["J’identifie le malentendu","Je calme la situation","Je propose une solution","Je tire une leçon"],
+    8,"Résolveur","S.T.A.R. interculturel","Sit/Task/Action/Result.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – résolution de problèmes",["Décris une situation","Teste 2 actions possibles","Note le résultat & l’apprentissage"]),
+  P("1-3-5","Conscience de soi (diversité)","Comprendre ses biais et émotions face à la différence.",
+    "Se connaître pour mieux s’ouvrir.","me",
+    ["Je repère mes biais","Je gère mes émotions","Je recadre mes pensées","Je choisis un comportement"],
+    8,"Réflexif·ve","Journal biais/émotions","3 colonnes Pensées/Émotions/Actes.",
+    "Phase 2 – Mesurer","LS4YOU – introspection",["Note 1 déclencheur","Choisis 1 réponse adaptée","Planifie 1 mise en situation"]),
+
+  // 2.1 Santé & sécurité
+  P("2-1-1","Stress & émotions","Identifier ses émotions et transformer le stress en énergie.",
+    "Des outils simples pour te calmer.","id",
+    ["Je nomme mes émotions","Je sais me calmer","Je prépare un plan anti-stress","Je demande de l’aide si besoin"],
+    8,"Zenergy","Boîte à outils émotions","Respiration/5-4-3-2-1/Ancrage.",
+    "Phase 1 – Identifier","LS4YOU – gestion du stress",["Choisis 2 techniques","Teste-les 2×/jour 3j","Évalue l’effet (0–10)"]),
+  P("2-1-2","Autonomie & sécurité","Se protéger et réagir en situation à risque.",
+    "Prévenir vaut mieux que guérir.","me",
+    ["Je repère les risques","J’ai des réflexes sûrs","Je sais qui appeler","Je documente les incidents"],
+    8,"Safe Move","Plan sécurité perso","Checklist + contacts d’urgence.",
+    "Phase 2 – Mesurer","LS4YOU – planification",["Mappe 5 risques","Prévois 1 réponse/risque","Sauvegarde 3 contacts SOS"]),
+  P("2-1-3","Soutien social & comm’","Savoir demander de l’aide et activer son réseau.",
+    "Personne ne réussit seul.","id",
+    ["Je connais mon réseau","Je formule une demande claire","J’ouvre 1 nouveau contact","Je remercie & follow-up"],
+    8,"Relié·e","Cartes de soutien","Cercles perso/pro/ressources.",
+    "Phase 1 – Identifier","LS4YOU – réseau social",["Dessine 3 cercles","Place 10 contacts","Rédige 1 message d’aide"]),
+  P("2-1-4","Décision responsable","Identifier les risques, faire des choix éclairés.",
+    "Choisir = assumer les conséquences.","me",
+    ["J’évalue l’impact","Je choisis l’option la plus sûre","Je prépare un plan B","Je documente ma décision"],
+    8,"Prudent·e","Feuille de choix responsable","Critères : sécurité/valeurs/impacts.",
+    "Phase 2 – Mesurer","LS4YOU – matrices décision",["Écris 2 options","Score 3 critères x2","Choisis & justifie"]),
+  P("2-1-5","Bien-être & équilibre","Préserver sa santé physique et mentale.",
+    "Routines qui font du bien.","mo",
+    ["Je dors/mange/bouge","Je dose écrans/temps seul","Je garde 1 plaisir hebdo","Je surveille les signaux"],
+    8,"Balanced","Routine 1-2-3","1 sommeil / 2 repas / 3 mouvements.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – hygiène de vie",["Planifie ta semaine","Coche chaque jour","Auto-bilan le dimanche"]),
+
+  // 2.2 La paperasse
+  P("2-2-1","Organisation & planif.","Anticiper les démarches et planifier les étapes clés.",
+    "Moins de stress = plus d’anticipation.","id",
+    ["Je liste toutes les tâches","Je priorise par échéance","Je range mes preuves","Je mets des rappels"],
+    8,"Organisé·e","Kanban départ","À faire / En cours / Fait.",
+    "Phase 1 – Identifier","LS4YOU – organisation",["Crée 3 colonnes","Ajoute 10 cartes","Fixe 3 dates butoirs"]),
+  P("2-2-2","Persévérance","Tenir face aux démarches longues/complexes.",
+    "On avance petit pas par petit pas.","me",
+    ["Je segmente les tâches","Je tiens un suivi","Je gère les refus","Je célèbre les petits pas"],
+    8,"Tenace","Thermomètre d’avancement","% + obstacles + solutions.",
+    "Phase 2 – Mesurer","LS4YOU – motivation",["Note 3 obstacles","Propose 1 solution/chacun","Mets un % d’avancement"]),
+  P("2-2-3","Autonomie (démarches)","Gérer seul les démarches clés.",
+    "Savoir faire en solo.","mo",
+    ["Je sais où chercher","Je remplis les formulaires","Je téléverse des pièces","Je vérifie avant d’envoyer"],
+    8,"Autonome","Parcours simulé de démarche","Étapes cliquables + checklist.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – mise en pratique",["Choisis 1 démarche","Suis 5 étapes","Coche & exporte ton PDF"]),
+  P("2-2-4","Sens des responsabilités","Comprendre l’engagement personnel des démarches.",
+    "Fiabilité = confiance.","me",
+    ["Je respecte les délais","Je préviens en cas de retard","Je corrige mes erreurs","Je garde des traces"],
+    8,"Fiable","Charte perso d’engagement","4 engagements signés.",
+    "Phase 2 – Mesurer","LS4YOU – responsabilité",["Rédige 4 engagements","Signe & date","Partage à un pair"]),
+
+  // 2.3 OLS
+  P("2-3-1","Curiosité & apprentissage","Donner envie d’apprendre la langue et ses codes.",
+    "S’exposer un peu chaque jour.","id",
+    ["Je m’expose à la langue","J’apprends par micro-doses","Je note des phrases utiles","Je me corrige sans me juger"],
+    8,"Curieux·se","Routine 10 min/jour","Podcast + phrase + usage.",
+    "Phase 1 – Identifier","LS4YOU – microlearning",["Choisis 1 ressource","Note 3 phrases","Utilise-les demain"]),
+  P("2-3-2","Confiance à l’oral","Parler même sans tout comprendre.",
+    "Oser, c’est gagner.","mo",
+    ["Je prépare 3 phrases clés","Je mime/écris si besoin","Je vérifie la compréhension","Je souris et persévère"],
+    8,"Parleur·se","Cartes de survie à l’oral","10 cartes express.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – jeu de rôle",["Prépare 10 cartes","Joue 2 scénarios","Note 1 progrès"]),
+
+  // 3.1 Préparation psychologique
+  P("3-1-1","Conscience de soi","Identifier ses émotions face au départ.",
+    "Stress/excitation/peur : on clarifie.","id",
+    ["Je nomme l’émotion","Je repère le déclencheur","Je choisis une réponse","Je demande du soutien"],
+    8,"Clairvoyant·e","Roue des émotions + déclencheurs","Couleurs + échelles.",
+    "Phase 1 – Identifier","LS4YOU – émotions",["Choisis 3 émotions","Note le contexte","Choisis une stratégie"]),
+  P("3-1-2","Résilience","Rebondir face aux doutes/mal du pays.",
+    "Chuter, se relever, apprendre.","me",
+    ["J’accepte l’imperfection","Je repère mes ressources","Je documente mes progrès","Je garde le cap"],
+    8,"Résilient·e","Ligne de vie / courbe d’effort","Pics et apprentissages.",
+    "Phase 2 – Mesurer","LS4YOU – résilience",["Trace 5 moments clés","Note ce qui aide","Fixe 1 rituel"]),
+  P("3-1-3","Gestion des émotions","Apaiser stress/peur de l’inconnu.",
+    "Des techniques simples au quotidien.","mo",
+    ["Je respire/relaxe","J’écris/visualise","Je bouge/oxygène","Je limite écrans le soir"],
+    8,"Apaisé·e","Routine apaisante 3×3","3 min matin/soir/midi.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – bien-être",["Choisis 3 techniques","Planifie 1 semaine","Auto-score quotidien"]),
+  P("3-1-4","Autonomie émotionnelle","Se responsabiliser et demander de l’aide.",
+    "Je pilote mon humeur.","me",
+    ["Je repère mes signaux","Je déclenche un plan perso","Je contacte un soutien","Je fais un débrief"],
+    8,"Autonome+","Feuille d’alerte perso","Seuils verts/oranges/rouges.",
+    "Phase 2 – Mesurer","LS4YOU – auto-régulation",["Fixe tes seuils","Choisis 3 actions","Note le résultat"]),
+
+  // 3.2 Budget
+  P("3-2-1","Responsabilité (budget)","L’argent = choix et équilibre.",
+    "Un budget, c’est ta liberté.","id",
+    ["Je liste mes revenus","Je liste mes dépenses","Je fixe un plafond loisirs","Je garde une épargne sécurité"],
+    8,"Budget Boss","Budget 50/30/20","Répartition simple.",
+    "Phase 1 – Identifier","LS4YOU – finances",["Renseigne revenus/mois","Classe dépenses 50/30/20","Fixe un montant épargne"]),
+  P("3-2-2","Prise de décision (budget)","Choisir entre plusieurs options financières.",
+    "Comparer pour ne pas subir.","me",
+    ["Je compare 2 hébergements","Je compare 2 transports","Je regarde l’assurance","Je calcule le coût réel"],
+    8,"Smart Money","Comparateur coût total","€ + temps + risques.",
+    "Phase 2 – Mesurer","LS4YOU – décision",["Renseigne les coûts","Ajoute 2 critères perso","Choisis & justifie"]),
+
+  // 3.3 Vie collective
+  P("3-3-1","Communication assertive","S’exprimer clairement, écouter, se faire entendre.",
+    "Dire sans blesser.","id",
+    ["Je dis je","Je reformule","Je propose une demande claire","Je conclus par un accord"],
+    8,"Assertif·ve","Fiche DESC","Décrire/Exprimer/Suggérer/Conclure.",
+    "Phase 1 – Identifier","LS4YOU – comm’ assertive",["Écris 1 DESC","Teste avec un pair","Note l’effet"]),
+  P("3-3-2","Coopération","Répartir les rôles et contribuer au groupe.",
+    "On gagne en équipe.","mo",
+    ["Je clarifie le but","Je définis les rôles","Je partage l’info","Je fais un bilan"],
+    8,"Coéquipier·e","Sprint de coopération","But/Rôles/Rituels.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – projets collaboratifs",["Fixe 1 objectif commun","Attribue 3 rôles","Planifie 1 rétrospective"]),
+  P("3-3-3","Empathie (collectif)","Comprendre émotions et points de vue d’autrui.",
+    "Voir avec les yeux de l’autre.","me",
+    ["Je perçois les émotions","Je valide le ressenti","Je propose un soutien","Je garde des limites saines"],
+    8,"Écoute Active","Cartes émotions en colocation","Scénarios du quotidien.",
+    "Phase 2 – Mesurer","LS4YOU – empathie",["Choisis 2 scénarios","Note émotions/attentes","Décide 1 action soutenante"]),
+  P("3-3-4","Résolution de conflits","Gérer un désaccord sans rupture/fuite.",
+    "Chercher un terrain d’entente.","mo",
+    ["Je décris les faits","Je dis l’impact","Je propose 2 options","Je fixe un suivi"],
+    8,"Peace Maker","Médiation minute","Faits/Besoins/Options/Accord.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – conflits",["Rédige 1 médiation minute","Teste en rôle-play","Acte un accord écrit"]),
+
+  // 3.4 Vivre loin de chez soi
+  P("3-4-1","Autonomie (quotidien)","Gérer seul repas/transport/logement/rythme.",
+    "Organise-toi pour gagner en liberté.","mo",
+    ["Je planifie mes repas","Je maîtrise transports","Je gère intendance","Je crée un rythme sain"],
+    8,"Solo Ready","Checklist quotidien 360°","Repas/Transports/Logement/Rythme.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – autonomie",["Prépare 1 semaine type","Coche au quotidien","Corrige dimanche"]),
+  P("3-4-2","Résilience (éloignement)","Gérer solitude/imprévus/coups de blues.",
+    "Construire des appuis durables.","me",
+    ["Je prépare mes appuis","J’ai un plan anti-blues","Je m’autorise des écarts","Je reviens au cap"],
+    8,"Ancre","Plan anti-blues","Personnes/lieux/rituels SOS.",
+    "Phase 2 – Mesurer","LS4YOU – résilience",["Liste 5 appuis","Décris 1 rituel SOS","Fixe un check hebdo"]),
+
+  // 4.1 Engagement & valeurs
+  P("4-1-1","Pensée critique & éthique","Relire ce qu’on a appris sur soi/le monde.",
+    "Prendre de la hauteur critique.","me",
+    ["Je décris un apprentissage","Je le confronte à mes valeurs","J’identifie un biais","Je décide 1 règle d’action"],
+    10,"Éthique","Relecture critique","Faits/Interprétations/Valeurs/Règle.",
+    "Phase 2 – Mesurer","LS4YOU – réflexion éthique",["Choisis 1 situation marquante","Analyse en 4 cases","Écris ta règle d’action"]),
+  P("4-1-2","Engagement civique","Agir localement après la mobilité.",
+    "Relier expérience et territoire.","mo",
+    ["Je repère un besoin local","Je propose une action","Je contacte une structure","Je planifie une contribution"],
+    10,"Civique","Micro-engagement 2h/mois","Idée → action concrète.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – engagement",["Brainstorm 3 idées","Choisis 1 action courte","Fixe date & contact"]),
+  P("4-1-3","Créativité sociale","Transformer ses idées en projets utiles.",
+    "Créer pour le bien commun.","id",
+    ["Je génère des idées","Je choisis un format","Je prototype","Je teste auprès d’un public"],
+    10,"Créateur·rice","Sprint créatif 90’","Idéation → prototype simple.",
+    "Phase 1 – Identifier","LS4YOU – créativité",["Carte d’idées 8×1","Prototype low-tech","Retour de 2 pairs"]),
+  P("4-1-4","Leadership positif","Inspirer d’autres jeunes à partir.",
+    "Exemplarité et entraide.","mo",
+    ["Je clarifie le message","Je valorise les autres","Je partage les réussites","Je remercie les contributions"],
+    10,"Leader+","Parrain/Marraine mobilité","Pitch + mentorat de pair.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – mentorat",["Écris un pitch 60s","Identifie 1 jeune à soutenir","Propose 1 rendez-vous"]),
+
+  // 4.2 Valoriser son expérience
+  P("4-2-1","Identifier ses compétences","Repérer les compétences acquises en mobilité.",
+    "Nommer ce que tu as développé.","me",
+    ["Je liste 5 compétences","Je donne 1 preuve/compétence","Je relie au monde pro","Je choisis celles à renforcer"],
+    12,"Cartographe","Carte de compétences + preuves","STAR & exemples.",
+    "Phase 2 – Mesurer","LS4YOU – mesure & feedback",["Liste 5 compétences","Associe 1 preuve STAR","Priorise 2 à renforcer"]),
+  P("4-2-2","Raconter son expérience","Construire un portfolio narratif.",
+    "Ton histoire, tes preuves.","mo",
+    ["Je choisis un angle","Je sélectionne 3 preuves","Je structure en 3 actes","Je partage à un pair"],
+    12,"Narrateur·rice","Portfolio narratif","Avant / Pendant / Après.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – narration",["Choisis 6 visuels","Rédige 300 mots","Publie PDF/diapo"]),
+  P("4-2-3","CV mobilité","Intégrer la mobilité dans son CV.",
+    "Rendre visible l’expérience.","mo",
+    ["Je choisis un modèle","Je mets missions/résultats","J’ajoute soft skills","Je crée 1 version EN"],
+    12,"CV+","CV orienté expériences","Impact & compétences.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – autopromotion",["Duplique ton CV","Ajoute 3 bullets impact","Export PDF"]),
+  P("4-2-4","Pitch & présentation","Présenter son parcours (oral/vidéo).",
+    "Briller en 60–90 s.","mo",
+    ["Je structure mon pitch","Je m’enregistre","Je recueille 1 feedback","Je corrige et sauvegarde"],
+    12,"Pitcher","Pitch 3×20s","Qui je suis / Ce que j’ai fait / Ce que je veux.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – jeu de rôle & feedback",["Écris 3×20s","Enregistre 1 minute","Note 2 axes d’amélioration"]),
+
+  // 4.3 Projection & suites
+  P("4-3-1","Objectifs futurs","Fixer ses prochains caps réalistes.",
+    "Continuer à avancer.","me",
+    ["Je définis 1 cap 3 mois","Je découpe en étapes","Je définis 1 indicateur","Je planifie une revue"],
+    10,"Next Step","Roadmap 3 mois","Étapes + indicateurs.",
+    "Phase 2 – Mesurer","LS4YOU – objectifs",["Écris 1 cap clair","Crée 3 jalons","Fixe une revue J+30"]),
+  P("4-3-2","Nouvelles mobilités","Explorer d’autres formats/destinations.",
+    "Garder l’élan.","id",
+    ["J’explore 2 formats","Je contacte 1 organisme","Je calcule le coût","Je mesure ma motivation"],
+    10,"Explorer+","Carte des possibles","Formats/lieux/délais.",
+    "Phase 1 – Identifier","LS4YOU – exploration",["Liste 3 pistes","Note 2 contacts","Fixe 1 priorité"]),
+  P("4-3-3","Engagement local durable","S’ancrer sur le territoire.",
+    "Agir ici et maintenant.","mo",
+    ["Je choisis 1 cause","Je rejoins 1 collectif","Je planifie 1 action","Je fais un bilan"],
+    10,"Ancré·e","Plan d’engagement local","Causes/collectifs/actions.",
+    "Phase 3 – Mettre en œuvre","LS4YOU – engagement",["Choisis 1 cause","Contacte 1 structure","Planifie 2h/mois"]),
+  P("4-3-4","Intégration perso & pro","Relier la mobilité à ses choix de vie.",
+    "Faire levier pour la suite.","me",
+    ["Je relis mes apprentissages","Je cible des opportunités","Je mets à jour mes supports","Je demande un mentorat"],
+    10,"Intégrateur·rice","Plan d’intégration 360°","Vie perso / études / emploi.",
+    "Phase 2 – Mesurer","LS4YOU – accompagnement",["Liste 3 opportunités","Mets à jour CV/LinkedIn","Demande 1 mentor"]),
+];
+
+const TOTAL = PAGES.length;
+
+/* ====== Stockage simple (localStorage) ====== */
+let records = JSON.parse(localStorage.getItem('ls_records')||'[]');
+function save(pageId, patch){
+  const i = records.findIndex(r=>r.id===pageId);
+  const base = i>=0 ? records[i] : {id:pageId, eval:[], notes:'', done:false, pts:0, badge:''};
+  const rec = Object.assign({}, base, patch);
+  if(i>=0) records[i]=rec; else records.push(rec);
+  localStorage.setItem('ls_records', JSON.stringify(records));
+  updateStats();
+}
+function stat(){
+  const pts = records.reduce((s,r)=>s+(r.pts||0),0);
+  const done = records.filter(r=>r.done).length;
+  const badges = new Set(records.map(r=>r.badge).filter(Boolean)).size;
+  return {pts,done,badges};
+}
+function updateStats(){
+  const s = stat();
+  document.getElementById('statDone').textContent = s.done;
+  document.getElementById('statTotal').textContent = TOTAL;
+  document.getElementById('statPoints').textContent = s.pts;
+  document.getElementById('statBadges').textContent = s.badges;
+}
+
+/* ============== Sommaire ============== */
+function buildTOC(){
+  const el = document.getElementById('toc');
+  el.innerHTML = PAGES
+    .sort((a,b)=>idSort(a.id,b.id))
+    .map(p=>`<a href="#/${p.id}" data-id="${p.id}">${p.id} – ${p.titre}</a>`)
+    .join('');
+}
+
+/* ============== Routing ============== */
+function route(){
+  const id = location.hash.replace('#/','') || '1-1-1';
+  render(id);
+}
+function idSort(a,b){
+  const pa=a.split('-').map(Number), pb=b.split('-').map(Number);
+  for(let i=0;i<3;i++){ if(pa[i]!==pb[i]) return pa[i]-pb[i]; }
+  return 0;
+}
+function ids(){ return PAGES.map(p=>p.id).sort(idSort); }
+function prevId(id){ const arr=ids(); const i=arr.indexOf(id); return arr[Math.max(0,i-1)]||id; }
+function nextId(id){ const arr=ids(); const i=arr.indexOf(id); return arr[Math.min(arr.length-1,i+1)]||id; }
+
+/* ============== Rendu page ============== */
+function chip(phase){
+  if(phase==='id') return '<span class="chip ch-id">Phase 1 – Identifier</span>';
+  if(phase==='me') return '<span class="chip ch-me">Phase 2 – Mesurer</span>';
+  return '<span class="chip ch-mo">Phase 3 – Mettre en œuvre</span>';
+}
+function render(id){
+  const p = PAGES.find(x=>x.id===id); if(!p) return;
+  document.querySelectorAll('.toc a').forEach(a=>a.classList.toggle('active', a.getAttribute('data-id')===id));
+  const rec = records.find(r=>r.id===id) || {eval:[],notes:'',done:false,pts:0,badge:''};
+  const evalOpts = ['1 – Débutant','2 – En progrès','3 – Confirmé','4 – Expérimenté'];
+  const evalUI = p.eval.map((q,i)=>`
+    <div class="row">
+      <div style="flex:1">${q}</div>
+      <select data-idx="${i}">
+        ${evalOpts.map((o,lv)=>`<option value="${lv+1}" ${(rec.eval||[])[i]==(lv+1)?'selected':''}>${o}</option>`).join('')}
+      </select>
+    </div>`).join('');
+  const steps = p.act.etapes.map((s,i)=>`<li>${i+1}. ${s}</li>`).join('');
+
+  document.getElementById('main').innerHTML = `
+    <h1>${p.titre} ${chip(p.phase)}</h1>
+    <div class="obj">🎯 <strong>Objectif :</strong> ${p.objectif}</div>
+    <div class="small">ID: ${p.id}</div>
+
+    <div class="block"><strong>💡 Intro</strong><div>${p.intro}</div></div>
+
+    <div class="block">
+      <strong>📊 Auto-évaluation</strong>
+      ${evalUI}
+      <div style="margin-top:8px">
+        <button class="btn" onclick="saveEval('${p.id}')">Sauvegarder</button>
+      </div>
+    </div>
+
+    <div class="block">
+      <strong>📝 Activité LS4YOU</strong>
+      <div><em>${p.act.nom}</em> – ${p.act.resume}</div>
+      <ol style="margin-top:6px">${steps}</ol>
+      <div class="small" style="margin-top:6px">${p.act.ancrage} — ${p.act.source}</div>
+    </div>
+
+    <div class="block">
+      <strong>🎮 Mini-activité</strong>
+      <div>Points: <strong>${p.game.points}</strong> • Badge: <strong>${p.game.badge}</strong></div>
+      <div style="margin-top:6px">
+        <button class="btn secondary" onclick="complete('${p.id}', ${p.game.points}, '${p.game.badge}')">Marquer comme fait</button>
+        <button class="btn ghost" onclick="uncomplete('${p.id}')">Annuler</button>
+      </div>
+      <div class="small" style="margin-top:6px">Astuce : réalise l’activité sur Canva/diapo puis clique “Marquer comme fait”.</div>
+    </div>
+
+    <div class="block">
+      <strong>💾 Ma trace</strong>
+      <textarea id="tx" placeholder="Note ici ce que tu as appris, tes réflexions, tes questions…"></textarea>
+      <div style="margin-top:6px">
+        <button class="btn" onclick="saveNotes('${p.id}')">Sauvegarder mes notes</button>
+      </div>
+    </div>
+
+    <div class="nav">
+      <a class="btn" href="#/${prevId(p.id)}">← Précédent</a>
+      <a class="btn" href="#/${nextId(p.id)}">Suivant →</a>
+    </div>
+  `;
+  document.getElementById('tx').value = rec.notes || '';
+  updateStats();
+}
+
+/* ============== Actions ============== */
+function saveEval(id){
+  const vals = [...document.querySelectorAll('select[data-idx]')].map(s=>parseInt(s.value)||1);
+  save(id, {eval: vals});
+}
+function saveNotes(id){
+  const v = document.getElementById('tx').value || '';
+  save(id, {notes: v});
+}
+function complete(id, pts, badge){
+  save(id, {done:true, pts:pts, badge:badge});
+}
+function uncomplete(id){
+  save(id, {done:false, pts:0, badge:''});
+}
+
+/* ============== Init ============== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  buildTOC(); updateStats(); route();
+});
+window.addEventListener('hashchange', route);
+</script>
+</body>
+</html>
